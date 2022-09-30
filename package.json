@@ -1,6 +1,6 @@
 {
-  "name": "vite-vue3-tailwind-starter",
-  "version": "0.0.0",
+  "name": "wad2-cookbook",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
