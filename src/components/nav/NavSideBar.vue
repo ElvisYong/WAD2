@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { useAuth0 } from '@auth0/auth0-vue';
-const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
+
+const { loginWithPopup, logout, user, isAuthenticated } = useAuth0();
+
+const getProfileImage = () => {
+  return user.value.picture ? user.value.picture : "";
+}
 
 const logoutOnClick = () => {
   return logout({ returnTo: window.location.origin });
 };
-
 </script>
 
 <template>
@@ -32,12 +36,26 @@ const logoutOnClick = () => {
       <label for="nav-drawer" class="drawer-overlay"></label>
       <ul class="menu p-4 overflow-y-auto w-60 bg-base-200 text-base-content">
         <!-- Sidebar content here -->
-        <li><a class="btn btn-ghost normal-case text-xl">CookBookie</a></li>
-        <div v-if="isAuthenticated">
-          <li><a>{{user.name}}</a></li>
-          <li @click="logoutOnClick"><a>Log out</a></li>
+        <div class="mt-3">
+
+          <a class="btn btn-ghost normal-case text-xl ">CookBookie</a>
+          <div v-if="isAuthenticated">
+            <li>
+              <div class="avatar center">
+                <div class="w-16 rounded">
+                  <img :src="getProfileImage()" alt="" />
+                </div>
+              </div>
+              <a>{{user.name}}</a>
+            </li>
+            <li @click="logoutOnClick"><a>Log out</a></li>
+          </div>
+          <div v-else>
+            <li class="btn btn-sm btn-primary text-white" @click="loginWithPopup">
+              Sign up / Log In
+            </li>
+          </div>
         </div>
-        <li v-else @click="loginWithRedirect"><a>Log in</a></li>
       </ul>
 
     </div>
