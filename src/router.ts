@@ -11,7 +11,6 @@ const routes: RouteRecordRaw[] = [
       path: "/about",
       name: "About",
       component: () => import("./pages/about.vue"),
-      beforeEnter: authGuard,
   },
 ];
 
