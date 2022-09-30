@@ -5,8 +5,8 @@
 <template>
   <div class="navbar bg-base-100">
     <!-- Mobile view -->
-    <div class="navbar-end">
-      <div class="dropdown dropdown-end">
+    <div class="navbar-start">
+      <div class="dropdown">
         <!-- hamburger icon -->
         <label tabindex="0" class="btn btn-ghost lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
