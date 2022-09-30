@@ -4,15 +4,13 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 const routes: RouteRecordRaw[] = [
   {
       path: "/",
-      name: "Dashboard",
-      component: () => import("./pages/index.vue"),
-      beforeEnter: authGuard,
+      name: "Home",
+      component: () => import("./pages/home.vue"),
   },
   {
       path: "/about",
       name: "About",
       component: () => import("./pages/about.vue"),
-      beforeEnter: authGuard,
   },
 ];
 
