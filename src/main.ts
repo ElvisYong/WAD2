@@ -14,8 +14,8 @@ const router = createRouter({
 
 app.use(
   createAuth0({
-    domain: "dev-lht06f-n.us.auth0.com",
-    client_id: "PcsOUpoDB29BbDQ1WEtG8jfokpJsKYQf",
+    domain: import.meta.env.AUTH_DOMAIN,
+    client_id: import.meta.env.AUTH_CLIENT_ID,
     redirect_uri: window.location.origin,
   })
 )
