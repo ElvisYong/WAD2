@@ -6,7 +6,6 @@ const routes: RouteRecordRaw[] = [
       path: "/",
       name: "Dashboard",
       component: () => import("./pages/index.vue"),
-      beforeEnter: authGuard,
   },
   {
       path: "/about",
