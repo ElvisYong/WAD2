@@ -2,10 +2,12 @@
 </script>
 
 <template>
-  <div>
-    <main>
-      <NavBar />
-      <router-view />
-    </main>
-  </div>
+  <html data-theme="cupcake">
+  <main>
+    <NavSideBar>
+      <RouterView />
+    </NavSideBar>
+  </main>
+
+  </html>
 </template>
