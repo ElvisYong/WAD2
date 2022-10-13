@@ -11,6 +11,8 @@
     "@vueuse/core": "^9.3.0",
     "@vueuse/head": "^0.7.11",
     "daisyui": "^2.31.0",
+    "embla-carousel-autoplay": "^7.0.3",
+    "embla-carousel-vue": "^7.0.3",
     "vue": "^3.2.39",
     "vue-router": "^4.1.5"
   },

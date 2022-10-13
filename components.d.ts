@@ -8,10 +8,13 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ButtonRepo: typeof import('./src/components/ButtonRepo.vue')['default']
+    Card: typeof import('./src/components/home/Card.vue')['default']
     Combobox: typeof import('@headlessui/vue')['Combobox']
     ComboboxInput: typeof import('@headlessui/vue')['ComboboxInput']
     ComboboxOption: typeof import('@headlessui/vue')['ComboboxOption']
     ComboboxOptions: typeof import('@headlessui/vue')['ComboboxOptions']
+    EmblaCarousel: typeof import('./src/components/home/EmblaCarousel.vue')['default']
+    Gallery: typeof import('./src/components/home/Gallery.vue')['default']
     NavSideBar: typeof import('./src/components/nav/NavSideBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
