@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { useAuth0 } from '@auth0/auth0-vue';
+import { useAuth0 } from "@auth0/auth0-vue";
 
-const { loginWithPopup, logout, user, isAuthenticated } = useAuth0();
+const {
+  loginWithPopup, logout, user, isAuthenticated,
+} = useAuth0();
 
-const getProfileImage = () => {
-  return user.value.picture ? user.value.picture : "";
-}
+const getProfileImage = () => (user.value.picture ? user.value.picture : "");
 
-const logoutOnClick = () => {
-  return logout({ returnTo: window.location.origin });
-};
+const logoutOnClick = () => logout({ returnTo: window.location.origin });
 </script>
 
 <template>
@@ -61,5 +59,3 @@ const logoutOnClick = () => {
     </div>
   </div>
 </template>
-
-  

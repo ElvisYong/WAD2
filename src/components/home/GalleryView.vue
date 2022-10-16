@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 </script>
 
 <!-- TODO: Finish gallery view -->
@@ -7,7 +7,7 @@
     <p1>Some content</p1>
     <div class="grid grid-cols-4 gap-4">
       <div v-for="n in 10">
-        <Card />
+        <CardItem />
       </div>
     </div>
   </div>

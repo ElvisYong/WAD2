@@ -1,7 +1,7 @@
 <script setup>
 useHead({
-  title: 'Home',
-})
+  title: "Home",
+});
 </script>
 
 <route lang="json">
@@ -18,10 +18,12 @@ useHead({
       <SearchBar />
     </div>
 
-    <EmblaCarousel />
+    <div>
+      <PreferenceCarousel />
+    </div>
 
     <div>
-      <Gallery />
+      <GalleryView />
     </div>
   </div>
 </template>
