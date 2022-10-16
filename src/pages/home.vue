@@ -23,7 +23,7 @@ useHead({
     </div>
 
     <div>
-      <GalleryView />
+      <RecipesView />
     </div>
   </div>
 </template>
