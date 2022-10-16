@@ -18,8 +18,6 @@ watch(
     routeName.value = route.name;
   }
 );
-
-
 </script>
 
 <template>
