@@ -8,16 +8,11 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ButtonRepo: typeof import('./src/components/ButtonRepo.vue')['default']
-    Card: typeof import('./src/components/home/CardItem.vue')['default']
     CardItem: typeof import('./src/components/home/CardItem.vue')['default']
-    Combobox: typeof import('@headlessui/vue')['Combobox']
-    ComboboxInput: typeof import('@headlessui/vue')['ComboboxInput']
-    ComboboxOption: typeof import('@headlessui/vue')['ComboboxOption']
-    ComboboxOptions: typeof import('@headlessui/vue')['ComboboxOptions']
+    CuisinesCarousel: typeof import('./src/components/home/CuisinesCarousel.vue')['default']
     GalleryView: typeof import('./src/components/home/GalleryView.vue')['default']
     NavSideBar: typeof import('./src/components/nav/NavSideBar.vue')['default']
-    PreferenceCarousel: typeof import('./src/components/home/PreferenceCarousel.vue')['default']
-    Preferences: typeof import('./src/components/home/Preferences.vue')['default']
+    PreferenceView: typeof import('./src/components/home/PreferenceView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchBar: typeof import('./src/components/SearchBar.vue')['default']

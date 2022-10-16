@@ -19,7 +19,7 @@ useHead({
     </div>
 
     <div>
-      <PreferenceCarousel />
+      <PreferenceView />
     </div>
 
     <div>
