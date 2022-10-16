@@ -18,12 +18,12 @@ useHead({
       <SearchBar />
     </div>
 
-    <div>
-      <PreferenceView />
+    <div class="mt-10">
+      <PreferenceForm />
     </div>
 
     <div>
-      <GalleryView />
+      <RecipesGrid />
     </div>
   </div>
 </template>

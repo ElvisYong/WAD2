@@ -13,7 +13,7 @@ const modules = [Navigation, Pagination];
 have to use the useSwiper() api to get the swiper instance and call next on
 button click instead of the default navigation button-->
 <template>
-  <Swiper :pagination="true" :navigation="true" :modules="modules" class="mt-3 text-center w-full h-full">
+  <Swiper :pagination="true" :navigation="true" :modules="modules" class="text-center w-full h-full">
     <SwiperSlide class="object-fill">
       <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
     </SwiperSlide>
