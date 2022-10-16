@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { useAuth0 } from '@auth0/auth0-vue';
+import { useAuth0 } from "@auth0/auth0-vue";
 
-const { loginWithPopup, logout, user, isAuthenticated } = useAuth0();
+const {
+  loginWithPopup, logout, user, isAuthenticated,
+} = useAuth0();
 
-const getProfileImage = () => {
-  return user.value.picture ? user.value.picture : "";
-}
+const getProfileImage = () => (user.value.picture ? user.value.picture : "");
 
-const logoutOnClick = () => {
-  return logout({ returnTo: window.location.origin });
-};
+const logoutOnClick = () => logout({ returnTo: window.location.origin });
 </script>
 
 <template>
@@ -34,7 +32,7 @@ const logoutOnClick = () => {
 
     <div class="drawer-side">
       <label for="nav-drawer" class="drawer-overlay"></label>
-      <ul class="menu p-4 overflow-y-auto w-60 bg-base-200 text-base-content">
+      <ul class="menu p-4 overflow-y-auto w-50 bg-base-200 text-base-content">
         <!-- Sidebar content here -->
         <div class="mt-3">
 
@@ -61,5 +59,3 @@ const logoutOnClick = () => {
     </div>
   </div>
 </template>
-
-  
