@@ -18,7 +18,7 @@ useHead({
       <SearchBar />
     </div>
 
-    <div>
+    <div class="mt-10">
       <PreferenceView />
     </div>
 
