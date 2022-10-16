@@ -19,11 +19,11 @@ useHead({
     </div>
 
     <div class="mt-10">
-      <PreferenceView />
+      <PreferenceForm />
     </div>
 
     <div>
-      <RecipesView />
+      <RecipesGrid />
     </div>
   </div>
 </template>
