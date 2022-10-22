@@ -14,12 +14,12 @@ import debounced from "lodash.debounce"
 
 let recipes = ref([])
 
-let selected = ref(recipes[0])
+let selected = ref()
 let searchTerm = ref('')
 
 const debouncedSearch = debounced(async (searchTerm) => {
-  const { data } = await getAutocompleteSearch(searchTerm)
-  recipes.value = data.value
+  const response = await getAutocompleteSearch(searchTerm)
+  recipes.value = response.data.value
 }, 500)
 
 watch(searchTerm, async (newSearchTerm, oldSearchTerm) => {

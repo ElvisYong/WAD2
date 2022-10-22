@@ -1,5 +1,19 @@
-<script setup lang="ts">
-  
+<script setup>
+import { ref, onMounted } from 'vue'
+import { getRandomRecommendations } from '../../apis/recipes'
+
+const input = ref(null)
+
+onMounted(async () => {
+  try {
+    const response = await getRandomRecommendations(false, "meat,lunch", 100)
+    console.log(response.data.value)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+
 </script>
 
 <!-- TODO: Finish gallery view -->
