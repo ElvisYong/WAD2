@@ -1,7 +1,9 @@
 <script setup lang="ts">
+  
 </script>
 
 <!-- TODO: Finish gallery view -->
+<!-- TODO: Remove hard coded v-for  -->
 <template>
   <div class="mt-5">
     <p1>Some content</p1>
