@@ -18,9 +18,9 @@ useHead({
       <SearchBar />
     </div>
 
-    <div class="mt-10">
+    <!-- <div class="mt-10">
       <PreferenceForm />
-    </div>
+    </div> -->
 
     <div>
       <RecipesGrid />

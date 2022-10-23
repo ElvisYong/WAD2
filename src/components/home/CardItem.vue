@@ -1,16 +1,20 @@
 <script setup>
+const props = defineProps(['recipe'])
+
+const recipe = ref(props.recipe)
+
 </script>
 
 <!-- TODO: Style cards -->
 <template>
-  <div class="card card-compact w-full bg-base-100 shadow-xl">
-    <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-    <div class="card-body">
-      <h2 class="card-title">Shoes!</h2>
-      <p>If a dog chews shoes whose shoes does he choose?</p>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary">Buy Now</button>
+  <div>
+    <div class="avatar">
+      <div class="rounded">
+        <img :src="recipe.image" alt="Shoes" />
       </div>
+    </div>
+    <div class="flex">
+      <p class="text-sm">{{recipe.title}}</p>
     </div>
   </div>
 </template>
