@@ -10,12 +10,12 @@ const {
 const getProfileImage = () => (user.value.picture ? user.value.picture : "");
 const logoutOnClick = () => logout({ returnTo: window.location.origin });
 const route = useRoute();
-const routeName = ref()
+const currentRouteName = ref()
 
 watch(
   () => route.name,
   () => {
-    routeName.value = route.name;
+    currentRouteName.value = route.name;
   }
 );
 </script>
@@ -52,7 +52,7 @@ watch(
 
           <!-- TODO: Update and add all the required pages -->
           <!-- List of pages -->
-          <div class="mt-3 space-y-1">
+          <div class="mt-3">
             <div v-if="isAuthenticated">
               <li>
                 <div class="avatar center">
@@ -70,20 +70,24 @@ watch(
                 Sign up / Log In
               </li>
             </div>
-            <li class="mt-3">
-              <a :class="routeName === 'Home' ? 'active' : 'text-gray-600'">
+            <div class="mt-5" :class="currentRouteName === 'Home' ? 'border-l-2 border-primary active' : 'text-gray-600'">
+              <a>
                 Home
               </a>
-            </li>
-            <li>
-              <a :class="routeName === 'About' ? 'active' : 'text-gray-600'">My Recipes</a>
-            </li>
-            <li>
-              <a :class="routeName === 'About' ? 'active' : 'text-gray-600'">My Kitchen</a>
-            </li>
-            <li>
-              <a :class="routeName === 'About' ? 'active' : 'text-gray-600'">Cooking Wishlist</a>
-            </li>
+            </div>
+            <TabItem>
+
+            </TabItem>
+            <div class="mt-3" :class="currentRouteName === 'MyRecipes' ? 'border-l-2 border-primary active' : 'text-gray-600'">
+              <a :class="currentRouteName === 'About' ? 'active' : 'text-gray-600'">My Recipes</a>
+            </div>
+            <div class="mt-3" :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
+              <a :class="currentRouteName === 'About' ? 'active' : 'text-gray-600'">My Kitchen</a>
+            </div>
+            <div class="mt-3"
+              :class="currentRouteName === 'CookingWishlist' ? 'border-l-2 border-primary active' : 'text-gray-600'">
+              <a :class="currentRouteName === 'About' ? 'active' : 'text-gray-600'">Cooking Wishlist</a>
+            </div>
           </div>
 
           <!-- TODO: Add user specific actions here -->

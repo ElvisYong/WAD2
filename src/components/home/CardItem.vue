@@ -1,7 +1,13 @@
 <script setup>
-const props = defineProps(['recipe'])
+import { useRouter, useRoute } from 'vue-router'
+import { defineProps, ref } from 'vue';
 
+const router = useRouter()
+const route = useRoute()
+
+const props = defineProps(['recipe'])
 const recipe = ref(props.recipe)
+
 
 </script>
 
@@ -14,7 +20,7 @@ const recipe = ref(props.recipe)
       </div>
     </div>
     <div class="flex">
-      <p class="text-sm">{{recipe.title}}</p>
+      <p class="text-sm">{{ recipe.title }}</p>
     </div>
   </div>
 </template>

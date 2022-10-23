@@ -2,6 +2,7 @@
 import { ref, onBeforeMount } from 'vue'
 import { getRandomRecommendations } from '../../apis/recipes'
 
+// TODO: Remove the hardcoded data
 const randomRecipes = ref([
     {
         "vegetarian": false,
