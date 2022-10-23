@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <html data-theme="cupcake">
+  <html data-theme="bumblebee">
   <main>
     <NavSideBar>
       <RouterView />
