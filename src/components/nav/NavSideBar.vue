@@ -47,7 +47,7 @@ watch(
         <div class="flex flex-col mt-3 text-center">
 
           <div class="w-3/4 self-center">
-            <img src="../../../public/logo.png" />
+            <img src="/logo.png" />
           </div>
 
           <!-- TODO: Update and add all the required pages -->
