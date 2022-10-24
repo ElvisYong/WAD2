@@ -70,23 +70,22 @@ watch(
                 Sign up / Log In
               </li>
             </div>
-            <div class="mt-5" :class="currentRouteName === 'Home' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a>
-                Home
-              </a>
-            </div>
-            <TabItem>
 
-            </TabItem>
-            <div class="mt-3" :class="currentRouteName === 'MyRecipes' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a :class="currentRouteName === 'About' ? 'active' : 'text-gray-600'">My Recipes</a>
+            <div class="mt-5"
+              :class="currentRouteName === 'Home' ? 'border-l-2 border-primary active' : 'text-gray-600'">
+              <a>Home</a>
             </div>
-            <div class="mt-3" :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a :class="currentRouteName === 'About' ? 'active' : 'text-gray-600'">My Kitchen</a>
+            <div class="mt-3"
+              :class="currentRouteName === 'MyRecipes' ? 'border-l-2 border-primary active' : 'text-gray-600'">
+              <a>My Recipes</a>
+            </div>
+            <div class="mt-3"
+              :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
+              <a>My Kitchen</a>
             </div>
             <div class="mt-3"
               :class="currentRouteName === 'CookingWishlist' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a :class="currentRouteName === 'About' ? 'active' : 'text-gray-600'">Cooking Wishlist</a>
+              <a>Cooking Wishlist</a>
             </div>
           </div>
 
