@@ -26,3 +26,9 @@ export const getRandomRecommendations = async (limitLicense: boolean, tags: stri
     `${RECIPE_ENDPOINT}/random?limitLicense=${limitLicense}&tags=${tags}&number=${number}`,
   ).get().json();
 }
+
+export const getRecipeById = async (id: number, includeNutrition: boolean) => {
+  return await useFetch(
+    `${RECIPE_ENDPOINT}/${id}/information?includeNutrition=${includeNutrition}`,
+  ).get().json();
+}
