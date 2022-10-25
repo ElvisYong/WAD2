@@ -1,4 +1,5 @@
 <script setup>
+import { getRecipeById } from '../apis/recipes';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router'
 
@@ -9,10 +10,16 @@ useHead({
 const route = useRoute();
 const recipe = ref(null)
 
-// TODO: Call api using the id
-onMounted(() => {
-  console.log(route.params.id)
+onMounted(async () => {
   const recipeId = route.params.id
+  try {
+    const response = await getRecipeById(recipeId, false);
+    console.log(response.data)
+    recipe.value = response.data;
+
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 </script>
