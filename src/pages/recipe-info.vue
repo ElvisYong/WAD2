@@ -9,9 +9,10 @@ useHead({
 const route = useRoute();
 const recipe = ref(null)
 
+// TODO: Call api using the id
 onMounted(() => {
-  console.log(route.params)
-  recipe.value = route.params.recipe
+  console.log(route.params.id)
+  const recipeId = route.params.id
 })
 
 </script>

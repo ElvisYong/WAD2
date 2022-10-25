@@ -1,5 +1,5 @@
 <script setup>
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { defineProps, ref } from 'vue';
 
 const router = useRouter()
@@ -9,9 +9,9 @@ const recipe = ref(props.recipe)
 const gotoRecipeInfo = (recipe) => {
   router.push(
     {
-      path: '/recipe-info/:id', name: 'RecipeInfo',
-      params: { id: recipe.id },
-      props: { recipe: recipe }
+      path: '/recipe-info/:id', 
+      name: 'RecipeInfo',
+      params: { id: recipe.id},
     })
 }
 
