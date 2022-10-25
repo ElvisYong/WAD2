@@ -5018,7 +5018,7 @@ const randomRecipes = ref([
       <Loader />
     </div>
     <div v-else>
-      <h1 class="font-bold text-xl">Recipes!</h1>
+      <h1 class="ml-3 font-bold text-xl">Recipes!</h1>
       <div class="mt-3 p-3 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         <div v-for="recipe in randomRecipes">
           <CardItem :recipe="recipe" />
