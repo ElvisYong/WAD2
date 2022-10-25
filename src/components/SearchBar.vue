@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import {
   Combobox,
   ComboboxInput,
@@ -9,29 +9,40 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import { CheckIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+import { getAutocompleteSearch } from '../apis/recipes'
+import debounced from "lodash.debounce"
 
-const people = [
-  { id: 1, name: 'Wade Cooper' },
-  { id: 2, name: 'Arlene Mccoy' },
-  { id: 3, name: 'Devon Webb' },
-  { id: 4, name: 'Tom Cook' },
-  { id: 5, name: 'Tanya Fox' },
-  { id: 6, name: 'Hellen Schmidt' },
-]
+let recipes = ref([])
 
-let selected = ref(people[0])
-let query = ref('')
+let selected = ref()
+let searchTerm = ref('')
 
-let filteredPeople = computed(() =>
-  query.value === ''
-    ? people
-    : people.filter((person) =>
-      person.name
-        .toLowerCase()
-        .replace(/\s+/g, '')
-        .includes(query.value.toLowerCase().replace(/\s+/g, ''))
-    )
-)
+const debouncedSearch = debounced(async (searchTerm) => {
+  const response = await getAutocompleteSearch(searchTerm)
+  recipes.value = response.data.value
+}, 500)
+
+watch(searchTerm, async (newSearchTerm, oldSearchTerm) => {
+  try {
+    debouncedSearch(newSearchTerm)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+let filteredRecipes = computed(() => {
+  if (searchTerm.value === '') {
+    return []
+  }
+
+  return recipes.value.filter((recipe) => {
+    return recipe.title
+      .toLowerCase()
+      .replace(/\s+/g, '')
+      .includes(searchTerm.value.toLowerCase().replace(/\s+/g, ''))
+  })
+})
+
 </script>
 
 <template>
@@ -44,26 +55,26 @@ let filteredPeople = computed(() =>
             <MagnifyingGlassIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
           </ComboboxButton>
           <ComboboxInput class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-            :displayValue="(person) => person.name" @change="query = $event.target.value" />
+            :displayValue="(recipe) => recipe && recipe.value.title" @change="searchTerm = $event.target.value" />
         </div>
 
         <TransitionRoot leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0"
-          @after-leave="query = ''">
+          @after-leave="searchTerm=''">
           <ComboboxOptions
             class="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-            <div v-if="filteredPeople.length === 0 && query !== ''"
+            <div v-if="recipes.length === 0 && searchTerm !== ''"
               class="relative cursor-default select-none py-2 px-4 text-gray-700">
               Nothing found.
             </div>
 
-            <ComboboxOption v-for="person in filteredPeople" as="template" :key="person.id" :value="person"
+            <ComboboxOption v-for="recipe in filteredRecipes" as="template" :key="recipe.id" :value="recipe"
               v-slot="{ selected, active }">
               <li class="relative cursor-default select-none py-2 pl-10 pr-4" :class="{
                 'bg-teal-600 text-white': active,
                 'text-gray-900': !active,
               }">
                 <span class="block truncate" :class="{ 'font-medium': selected, 'font-normal': !selected }">
-                  {{ person.name }}
+                  {{ recipe.title }}
                 </span>
                 <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3"
                   :class="{ 'text-white': active, 'text-teal-600': !active }">

@@ -13,14 +13,14 @@ useHead({
 </route>
 
 <template>
-  <div class="lg:mx-60">
-    <div class="mx-auto w-1/2 mt-6">
+  <div class="sm:mx-16 lg:mx-16 xl:mx-60">
+    <div class="hidden mx-auto w-1/2 mt-6 lg:flex">
       <SearchBar />
     </div>
 
-    <div class="mt-10">
+    <!-- <div class="mt-10">
       <PreferenceForm />
-    </div>
+    </div> -->
 
     <div>
       <RecipesGrid />

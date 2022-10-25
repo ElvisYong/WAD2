@@ -7,6 +7,11 @@ const routes: RouteRecordRaw[] = [
       name: "Home",
       component: () => import("./pages/home.vue"),
   },
+  {
+      path: "/recipe-info/:id",
+      name: "RecipeInfo",
+      component: () => import("./pages/recipe-info.vue"),
+  },
 ];
 
 const router = createRouter({

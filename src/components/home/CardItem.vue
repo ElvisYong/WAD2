@@ -1,16 +1,33 @@
-<script setup lang="ts">
+<script setup>
+import { useRouter, useRoute } from 'vue-router'
+import { defineProps, ref } from 'vue';
+
+const router = useRouter()
+const props = defineProps(['recipe'])
+const recipe = ref(props.recipe)
+
+const gotoRecipeInfo = (recipe) => {
+  router.push(
+    {
+      path: '/recipe-info/:id', name: 'RecipeInfo',
+      params: { id: recipe.id },
+      props: { recipe: recipe }
+    })
+}
+
 </script>
 
 <!-- TODO: Style cards -->
 <template>
-  <div class="card card-compact w-full bg-base-100 shadow-xl">
-    <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-    <div class="card-body">
-      <h2 class="card-title">Shoes!</h2>
-      <p>If a dog chews shoes whose shoes does he choose?</p>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary">Buy Now</button>
+  <div @click="gotoRecipeInfo(recipe)">
+    <div class="avatar cursor-pointer">
+      <div class="rounded">
+        <img :src="recipe.image" alt="Shoes" />
       </div>
+    </div>
+
+    <div class="flex">
+      <p class="cursor-pointer text-gray-600 hover:text-yellow-500">{{ recipe.title }}</p>
     </div>
   </div>
 </template>
