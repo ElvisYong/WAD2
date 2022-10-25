@@ -25,7 +25,7 @@ watch(
     <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
 
     <div class="drawer-content flex flex-col">
-      <!-- Hidden nav bar for mobile -->
+      <!-- Mobile nav bar-->
       <div class="navbar lg:hidden">
         <div class="navbar-start">
           <label for="nav-drawer" class="btn btn-ghost drawer-button lg:hidden">
@@ -35,6 +35,10 @@ watch(
             </svg>
           </label>
           <h1>4 Star Michelins</h1>
+        </div>
+        <!-- TODO: Restyle the searchbar to be a popup -->
+        <div class="navbar-end">
+          <SearchBar />
         </div>
       </div>
       <slot></slot>
@@ -50,7 +54,6 @@ watch(
             <img src="/logo.png" />
           </div>
 
-          <!-- TODO: Update and add all the required pages -->
           <!-- List of pages -->
           <div class="mt-3">
             <div v-if="isAuthenticated">
