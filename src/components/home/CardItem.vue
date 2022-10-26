@@ -32,7 +32,7 @@ const gotoRecipeInfo = (recipe) => {
     </div>
 
     <div class="flex">
-      <p class="cursor-pointer text-gray-600 hover:text-yellow-500">{{ recipe.title }}</p>
+      <p class="cursor-pointer text-gray-600 hover:text-yellow-500"></p>{{ recipe.title }}</p>
     </div>
   </div>
 </template>
