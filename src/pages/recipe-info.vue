@@ -13,7 +13,8 @@ const recipe = ref(null)
 onMounted(async () => {
   const recipeId = route.params.id
   try {
-    const response = await getRecipeById(recipeId, false);
+    const response = await getRecipeById(recipeId, true);
+    // TODO: remove console.log whenever
     console.log(response.data.value)
     recipe.value = response.data.value;
   } catch (error) {
