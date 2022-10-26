@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
-import { onMounted, watch } from "vue";
+import { watch } from "vue";
 import { useRoute } from 'vue-router';
 
 const {
