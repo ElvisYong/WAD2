@@ -12,6 +12,21 @@ const routes: RouteRecordRaw[] = [
       name: "RecipeInfo",
       component: () => import("./pages/recipe-info.vue"),
   },
+  {
+    path: "/profile",
+    name: "My Recipes",
+    component: () => import("./pages/recipe-info.vue"),
+  },
+  {
+    path: "/profile",
+    name: "My Kitchen",
+    component: () => import("./pages/recipe-info.vue"),
+  },
+  {
+    path: "/profile",
+    name: "Cooking Wishlist",
+    component: () => import("./pages/recipe-info.vue"),
+  },
 ];
 
 const router = createRouter({
