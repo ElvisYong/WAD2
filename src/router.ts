@@ -13,7 +13,7 @@ const routes: RouteRecordRaw[] = [
       component: () => import("./pages/recipe-info.vue"),
   },
   {
-    path: "/profile",
+    path: "/recipe-info",
     name: "My Recipes",
     component: () => import("./pages/recipe-info.vue"),
   },
