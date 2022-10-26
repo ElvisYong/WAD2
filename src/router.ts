@@ -11,6 +11,7 @@ const routes: RouteRecordRaw[] = [
       path: "/recipe-info/:id",
       name: "RecipeInfo",
       component: () => import("./pages/recipe-info.vue"),
+      props: true
   },
 ];
 
