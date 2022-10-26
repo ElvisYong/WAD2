@@ -8,9 +8,14 @@ const recipe = ref(props.recipe)
   <div class="flex justify-between">
     <div class="flex flex-col">
       <h1 class="font-bold text-2xl">{{ recipe.title }}</h1>
-      <TextLink>{{ recipe.sourceName }}</TextLink>
-      <RecipeStats :recipe=recipe />
+      <div>
+        <TextLink>{{ recipe.sourceName }}</TextLink>
+      </div>
 
+      <!-- TODO:  -->
+      <div class="align-bottom">
+        <RecipeStats :recipe=recipe />
+      </div>
     </div>
 
     <div>

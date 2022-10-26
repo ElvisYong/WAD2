@@ -1,4 +1,5 @@
 <script setup>
+import ClockIcon from '@heroicons/vue/24/outline/ClockIcon'
 const props = defineProps(['recipe'])
 const recipe = ref(props.recipe)
 </script>
