@@ -22,7 +22,7 @@ if (recipe.spoonacularScore) {
       </div>
 
       <!-- Ratings -->
-      <div class="rating mt-2">
+      <div class="rating mt-3">
         <div v-for="i in rating">
           <input name="rating-2" class="mask mask-star-2 bg-orange-400" />
         </div>
@@ -31,9 +31,19 @@ if (recipe.spoonacularScore) {
         </div>
       </div>
 
-      <!-- Recipe Summary -->
-      <div class="">
-        <p v-html="recipe.summary"></p>
+      <!-- Badges -->
+      <div class="flex flex-row my-4 gap-2">
+        <div v-for="dishType in recipe.dishTypes">
+          <div class="badge badge-primary">{{ dishType }}</div>
+        </div>
+      </div>
+
+      <!-- Health Score -->
+      <div class="flex flex-col my-4">
+        <div class="radial-progress text-primary" :style="{ '--value': recipe.healthScore }" style="--thickness: 3px;">
+          {{ recipe.healthScore }}/100
+        </div>
+        <h1 class="font-medium">Health Score</h1>
       </div>
 
       <!-- Recipe stats -->
