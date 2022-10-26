@@ -14,9 +14,8 @@ onMounted(async () => {
   const recipeId = route.params.id
   try {
     const response = await getRecipeById(recipeId, false);
-    console.log(response.data)
-    recipe.value = response.data;
-
+    console.log(response.data.value)
+    recipe.value = response.data.value;
   } catch (error) {
     console.log(error);
   }
@@ -34,13 +33,12 @@ onMounted(async () => {
 
 <template>
   <div class="sm:mx-16 lg:mx-16 xl:mx-60">
+    <div v-if="recipe === null" class="mt-10">
+      <Loader />
+    </div>
     <!-- Summary Wrapper -->
-    <div class="flex flex-row">
-
-      <div>
-        <h1>{{ recipe }}</h1>
-      </div>
-
+    <div v-else class="mt-32">
+      <Summary :recipe="recipe" />
     </div>
   </div>
 </template>
