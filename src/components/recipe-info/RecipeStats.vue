@@ -5,7 +5,7 @@ const recipe = ref(props.recipe)
 </script>
 
 <template>
-  <div class="stats stats-vertical lg:stats-horizontal shadow">
+  <div class="stats stats-horizontal shadow">
     <div class="stat">
       <div class="stat-title">Ingredients</div>
       <div class="stat-value">{{ recipe.extendedIngredients.length }}</div>
