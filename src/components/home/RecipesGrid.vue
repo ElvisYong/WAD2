@@ -4997,7 +4997,7 @@ const randomRecipes = ref([
     }
 ])
 
-// onBeforeMount(async () => {
+// onMounted(async () => {
 //   try {
 //     const response = await getRandomRecommendations(false, "meat,lunch", 10)
 //     randomRecipes.value = response.data.value.recipes
