@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     ButtonRepo: typeof import('./src/components/ButtonRepo.vue')['default']
     CardItem: typeof import('./src/components/home/CardItem.vue')['default']
     CuisinesCarousel: typeof import('./src/components/home/CuisinesCarousel.vue')['default']
+    Instructions: typeof import('./src/components/recipe-info/Instructions.vue')['default']
     Loader: typeof import('./src/components/Loader.vue')['default']
     NavSideBar: typeof import('./src/components/nav/NavSideBar.vue')['default']
     PreferenceForm: typeof import('./src/components/home/PreferenceForm.vue')['default']
