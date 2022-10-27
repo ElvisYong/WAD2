@@ -11,8 +11,8 @@ if (recipe.spoonacularScore) {
 </script>
 
 <template>
-  <div class="flex flex-col lg:gap-16 xl:gap-28 lg:flex-row">
-    <div class="flex flex-col order-last lg:order-first">
+  <div class="flex flex-col lg:flex-row">
+    <div class="flex flex-col order-last  lg:order-first">
       <div>
         <!-- Recipe title -->
         <h1 class="font-bold text-2xl">{{ recipe.title }}</h1>
@@ -54,9 +54,9 @@ if (recipe.spoonacularScore) {
       </div>
     </div>
 
-    <div class="mx-auto md:ml-auto">
+    <div class="mx-auto md:mr-0">
       <div class="avatar">
-        <div class="lg:w-96 rounded">
+        <div class="lg:w-3/4 rounded">
           <img :src="recipe.image" :alt="recipe.title" />
         </div>
       </div>

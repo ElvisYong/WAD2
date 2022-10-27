@@ -4584,7 +4584,7 @@ onMounted(async () => {
             <Summary :recipe="recipe" />
 
             <!-- Instructions -->
-            <div>
+            <div class="mt-16">
                 <Instructions :recipe="recipe" />
             </div>
         </div>
