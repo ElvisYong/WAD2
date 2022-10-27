@@ -4574,7 +4574,7 @@ onMounted(async () => {
 </route>
 
 <template>
-    <div class="sm:mx-8 lg:mx-16 xl:mx-36 2xl:mx-60">
+    <div class="mx-auto">
         <div v-if="recipe === null" class="mt-10">
             <Loader />
         </div>
