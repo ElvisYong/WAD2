@@ -4579,7 +4579,7 @@ onMounted(async () => {
             <Loader />
         </div>
 
-        <div v-else class="lg:mt-32">
+        <div v-else class="lg:mt-24 mb-10">
             <!-- Summary Wrapper -->
             <Summary :recipe="recipe" />
 
