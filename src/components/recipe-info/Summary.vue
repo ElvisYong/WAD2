@@ -13,27 +13,39 @@ if (recipe.spoonacularScore) {
 <template>
   <div class="flex flex-col md:flex-row">
     <div class="flex flex-col order-last md:order-first">
-      <!-- Recipe title -->
-      <h1 class="font-bold text-2xl">{{ recipe.title }}</h1>
-
-      <!-- Recipe Source -->
-      <div>
-        <TextLink>{{ recipe.sourceName }}</TextLink>
-      </div>
-
-      <!-- Ratings -->
-      <div class="rating mt-2">
-        <div v-for="i in rating">
-          <input name="rating-2" class="mask mask-star-2 bg-orange-400" />
-        </div>
-        <div v-for="i in 5 - rating">
-          <input name="rating-2" class="mask mask-star-2 bg-gray-400" />
-        </div>
-      </div>
-
-      <!-- Recipe Summary -->
       <div class="">
-        <p v-html="recipe.summary"></p>
+        <!-- Recipe title -->
+        <h1 class="font-bold text-2xl">{{ recipe.title }}</h1>
+
+        <!-- Recipe Source -->
+        <div>
+          <TextLink>{{ recipe.sourceName }}</TextLink>
+        </div>
+
+        <!-- Ratings -->
+        <div class="rating mt-3">
+          <div v-for="i in rating">
+            <input name="rating-2" class="mask mask-star-2 bg-orange-400" />
+          </div>
+          <div v-for="i in 5 - rating">
+            <input name="rating-2" class="mask mask-star-2 bg-gray-400" />
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="flex flex-row my-4 gap-2">
+          <div v-for="dishType in recipe.dishTypes">
+            <div class="badge badge-primary">{{ dishType }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Health Score -->
+      <div class="flex flex-col my-4">
+        <div class="radial-progress text-primary" :style="{ '--value': recipe.healthScore }" style="--thickness: 3px;">
+          {{ recipe.healthScore }}/100
+        </div>
+        <h1 class="font-medium">Health Score</h1>
       </div>
 
       <!-- Recipe stats -->
@@ -42,9 +54,9 @@ if (recipe.spoonacularScore) {
       </div>
     </div>
 
-    <div class="md:ml-auto">
+    <div class="flex justify-center md:ml-auto">
       <div class="avatar">
-        <div class="w-96 rounded">
+        <div class="w-80 lg:w-96 rounded">
           <img :src="recipe.image" :alt="recipe.title" />
         </div>
       </div>

@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router'
 
 useHead({
-  title: "Recipe info",
+    title: "Recipe info",
 });
 
 const route = useRoute();
@@ -4552,35 +4552,41 @@ const recipe = ref({
 })
 
 onMounted(async () => {
-  const recipeId = route.params.id
-  // try {
-  //   const response = await getRecipeById(recipeId, true);
-  //   // TODO: remove console.log whenever
-  //   console.log(response.data.value)
-  //   recipe.value = response.data.value;
-  // } catch (error) {
-  //   console.log(error);
-  // }
+    const recipeId = route.params.id
+    // try {
+    //   const response = await getRecipeById(recipeId, true);
+    //   // TODO: remove console.log whenever
+    //   console.log(response.data.value)
+    //   recipe.value = response.data.value;
+    // } catch (error) {
+    //   console.log(error);
+    // }
 })
 
 </script>
 
 <route lang="json">
 {
-  "meta": {
-    "title": "RecipeInfo"
-  }
+    "meta": {
+        "title": "RecipeInfo"
+    }
 }
 </route>
 
 <template>
-  <div class="sm:mx-8 lg:mx-16 xl:mx-36 2xl:mx-48">
-    <div v-if="recipe === null" class="mt-10">
-      <Loader />
+    <div class="sm:mx-8 lg:mx-16 xl:mx-36 2xl:mx-60">
+        <div v-if="recipe === null" class="mt-10">
+            <Loader />
+        </div>
+
+        <div v-else class="lg:mt-32">
+            <!-- Summary Wrapper -->
+            <Summary :recipe="recipe" />
+
+            <!-- Instructions -->
+            <div>
+                <Instructions :recipe="recipe" />
+            </div>
+        </div>
     </div>
-    <!-- Summary Wrapper -->
-    <div v-else class="mt-32">
-      <Summary :recipe="recipe" />
-    </div>
-  </div>
 </template>
