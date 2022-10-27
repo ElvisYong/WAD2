@@ -14,17 +14,17 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: "/my-recipes",
-    name: "My Recipes",
+    name: "MyRecipes",
     component: () => import("./pages/my-recipes.vue"),
   },
   {
     path: "/my-kitchen",
-    name: "My Kitchen",
+    name: "MyKitchen",
     component: () => import("./pages/my-kitchen.vue"),
   },
   {
     path: "/wishlist",
-    name: "Cooking Wishlist",
+    name: "CookingWishlist",
     component: () => import("./pages/wishlist.vue"),
   },
 ];
