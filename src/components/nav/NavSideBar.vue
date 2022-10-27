@@ -73,7 +73,9 @@ watch(
         <div class="flex flex-col mt-3 text-center">
 
           <div class="w-3/4 self-center @click:">
-            <img src="/logo.png" />
+            <a href="/">
+              <img src="/logo.png" />
+            </a>
 
           </div>
 
@@ -96,17 +98,6 @@ watch(
                 Sign up / Log In
               </li>
             </div>
-            <!-- <div>
-              <li :class="currentRouteName === 'Home' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-                <router-link to="/" class="nav-link">Home</router-link></li>
-              <li :class="currentRouteName === 'MyRecipes' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-                  <router-link to="/recipe-info" class="nav-link">My Recipes</router-link></li>
-              <li :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-                  <router-link to="/recipe-info" class="nav-link">My Kitchen</router-link></li>
-              <li :class="currentRouteName === 'CookingWishlist' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-                  <router-link to="/recipe-info" class="nav-link">Cooking Wishlist</router-link></li>
-              <router-view class="view"></router-view>
-            </div> -->
 
             <div class="mt-5" 
               :class="currentRouteName === 'Home' ? 'border-l-2 border-primary active' : 'text-gray-600'">
@@ -114,15 +105,15 @@ watch(
             </div>
             <div class="mt-3"
               :class="currentRouteName === 'MyRecipes' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/my-recipes">My Recipes</a> <!--to change the href after pages are up-->
+              <a href="/my-recipes">My Recipes</a> 
             </div>
             <div class="mt-3"
               :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/my-kitchen">My Kitchen</a> <!--to change the href after pages are up-->
+              <a href="/my-kitchen">My Kitchen</a>
             </div>
             <div class="mt-3"
               :class="currentRouteName === 'CookingWishlist' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/wishlist">Cooking Wishlist</a> <!--to change the href after pages are up-->
+              <a href="/wishlist">Cooking Wishlist</a>
             </div>
           </div> 
 
