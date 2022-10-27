@@ -114,15 +114,15 @@ watch(
             </div>
             <div class="mt-3"
               :class="currentRouteName === 'MyRecipes' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/recipe-info">My Recipes</a> <!--to change the href after pages are up-->
+              <a href="/my-recipes">My Recipes</a> <!--to change the href after pages are up-->
             </div>
             <div class="mt-3"
               :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/recipe-info">My Kitchen</a> <!--to change the href after pages are up-->
+              <a href="/my-kitchen">My Kitchen</a> <!--to change the href after pages are up-->
             </div>
             <div class="mt-3"
               :class="currentRouteName === 'CookingWishlist' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/recipe-info">Cooking Wishlist</a> <!--to change the href after pages are up-->
+              <a href="/wishlist">Cooking Wishlist</a> <!--to change the href after pages are up-->
             </div>
           </div> 
 
