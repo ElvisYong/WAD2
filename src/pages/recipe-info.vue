@@ -4574,17 +4574,17 @@ onMounted(async () => {
 </route>
 
 <template>
-    <div class="sm:mx-8 lg:mx-16 xl:mx-36 2xl:mx-60">
+    <div class="mx-auto">
         <div v-if="recipe === null" class="mt-10">
             <Loader />
         </div>
 
-        <div v-else class="lg:mt-32">
+        <div v-else class="lg:mt-24 mb-10">
             <!-- Summary Wrapper -->
             <Summary :recipe="recipe" />
 
             <!-- Instructions -->
-            <div>
+            <div class="mt-16">
                 <Instructions :recipe="recipe" />
             </div>
         </div>
