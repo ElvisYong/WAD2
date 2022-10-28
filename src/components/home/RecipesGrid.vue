@@ -2,8 +2,7 @@
 import { ref, onBeforeMount } from 'vue'
 import { getRandomRecommendations } from '../../apis/recipes'
 
-// TODO: Remove the hardcoded data
-const randomRecipes = ref([])
+const randomRecipes = ref(null)
 
 onMounted(async () => {
   try {
@@ -19,7 +18,7 @@ onMounted(async () => {
 
 <template>
   <div class="mt-6">
-    <div v-if="!randomRecipes">
+    <div v-if="randomRecipes === null">
       <Loader />
     </div>
     <div v-else>
@@ -28,14 +27,15 @@ onMounted(async () => {
         <h1 class="ml-3 font-bold text-xl">Recipes!</h1>
       </div>
       <div class="container grid xl:grid-cols-11 lg:grid-cols-9 md:grid-cols-7 sm:grid-cols-1">
-      <div class=""></div>
-      <div class="mt-3 p-3 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-50 lg:gap-40 md:gap-40">
-        <div v-for="recipe in randomRecipes">
-          <CardItem :recipe="recipe" />
-          <div></div>
+        <div class=""></div>
+        <div
+          class="mt-3 p-3 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-50 lg:gap-40 md:gap-40">
+          <div v-for="recipe in randomRecipes">
+            <CardItem :recipe="recipe" />
+            <div></div>
+          </div>
         </div>
-      </div>
-      <div class=""></div>
+        <div class=""></div>
       </div>
     </div>
   </div>
