@@ -21,7 +21,7 @@ const gotoRecipeInfo = (recipe) => {
 <template>
   <div @click="gotoRecipeInfo(recipe)">
     <div class="avatar cursor-pointer">
-      <div class="w-40 h-40 relative">
+      <div class="w-80 md:w-60 lg:w-40 rounded-lg relative">
         <!--unfortunately if i dont define a height and width the images doesnt work:(-->
         <div class="absolute inset-0 bg-cover bg-center z-0">
           <img class="rounded" :src="recipe.image" alt="recipeimage" />
@@ -33,7 +33,7 @@ const gotoRecipeInfo = (recipe) => {
       </div>
     </div>
 
-    <div class="flex">
+    <div class="flex justify-center text-xl md:text-lg lg:text-md">
       <TextLink>{{ recipe.title }}</TextLink>
     </div>
   </div>
