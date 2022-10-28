@@ -4566,11 +4566,18 @@ onMounted(async () => {
       <Loader />
     </div>
     <div v-else>
-      <h1 class="ml-3 font-bold text-xl">Recipes!</h1>
+      <div class="container grid xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-1">
+        <div></div>
+        <h1 class="ml-3 font-bold text-xl">Recipes!</h1>
+      </div>
+      <div class="container grid xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-1">
+      <div class=""></div>
       <div class="mt-3 p-3 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         <div v-for="recipe in randomRecipes">
           <CardItem :recipe="recipe" />
         </div>
+      </div>
+      <div class=""></div>
       </div>
     </div>
   </div>
