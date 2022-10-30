@@ -18,11 +18,10 @@ const gotoRecipeInfo = (recipe) => {
 </script>
 
 <!-- TODO: Style cards -->
-<template>
+<!-- <template>
   <div @click="gotoRecipeInfo(recipe)">
     <div class="avatar cursor-pointer">
-      <div class="w-40 h-40 relative">
-        <!--unfortunately if i dont define a height and width the images doesnt work:(-->
+      <div class="w-80 md:w-60 lg:w-40 rounded-lg relative">
         <div class="absolute inset-0 bg-cover bg-center z-0">
           <img class="rounded" :src="recipe.image" alt="recipeimage" />
         </div>
@@ -33,7 +32,27 @@ const gotoRecipeInfo = (recipe) => {
       </div>
     </div>
 
-    <div class="flex">
+    <div class="flex justify-center text-xl md:text-lg lg:text-md">
+      <TextLink>{{ recipe.title }}</TextLink>
+    </div>
+  </div>
+</template> -->
+
+<template>
+  <div @click="gotoRecipeInfo(recipe)">
+    <div class="avatar cursor-pointer">
+      <div class="w-80 md:w-60 lg:w-40 rounded-lg relative">
+        <div class="absolute inset-0 bg-cover bg-center z-0">
+          <img class="rounded" :src="recipe.image" alt="recipeimage" />
+        </div>
+        <div
+          class="opacity-0 hover:opacity-60 absolute inset-0 flex justify-center text-sm text-white py-2 bg-black items-center">
+          {{ recipe.extendedIngredients[0].name }}
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center text-xl md:text-lg lg:text-md">
       <TextLink>{{ recipe.title }}</TextLink>
     </div>
   </div>

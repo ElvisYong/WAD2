@@ -16,7 +16,7 @@ onMounted(async () => {
 
 </script>
 
-<template>
+<!-- <template>
   <div class="mt-6">
     <div v-if="randomRecipes === null">
       <Loader />
@@ -36,6 +36,22 @@ onMounted(async () => {
           </div>
         </div>
         <div class=""></div>
+      </div>
+    </div>
+  </div>
+</template> -->
+
+<template>
+  <div class="mt-6">
+    <div v-if="!randomRecipes">
+      <Loader />
+    </div>
+    <div v-else class="md:mx-3">
+      <h1 class="ml-3 mb-3 font-bold text-xl text-center lg:text-left lg:ml-5">Recipes!</h1>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:gap-10">
+        <div v-for="recipe in randomRecipes" class="text-center mt-0 mb-5">
+          <CardItem :recipe="recipe" />
+        </div>
       </div>
     </div>
   </div>
