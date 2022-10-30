@@ -2,16 +2,16 @@
 import { useAuth0 } from "@auth0/auth0-vue";
 import { watch } from "vue";
 import { useRoute } from 'vue-router';
-import { MagnifyingGlassIcon } from '@heroicons/vue/20/solid';
+import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/vue/20/solid';
 
 const {
   loginWithPopup, logout, user, isAuthenticated,
 } = useAuth0();
+const route = useRoute();
+const currentRouteName = ref()
 
 const getProfileImage = () => (user.value.picture ? user.value.picture : "");
 const logoutOnClick = () => logout({ returnTo: window.location.origin });
-const route = useRoute();
-const currentRouteName = ref()
 
 watch(
   () => route.name,
@@ -19,6 +19,12 @@ watch(
     currentRouteName.value = route.name;
   }
 );
+
+const addNewCollection = () => {
+  
+}
+
+
 </script>
 
 <template>
@@ -129,6 +135,10 @@ watch(
           <div v-if="isAuthenticated">
             <div class="mt-5">
               <h1 class="font-bold">Saved recipes</h1>
+              <button class="flex mt-3 text-primary hover:text-orange-400">
+                <PlusIcon class="w-5" />
+                Add Collection
+              </button>
             </div>
           </div>
         </div>
