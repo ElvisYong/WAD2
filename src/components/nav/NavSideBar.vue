@@ -2,13 +2,14 @@
 import { useAuth0 } from "@auth0/auth0-vue";
 import { watch } from "vue";
 import { useRoute } from 'vue-router';
-import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/vue/20/solid';
+import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/vue/20/solid';
 
 const {
   loginWithPopup, logout, user, isAuthenticated,
 } = useAuth0();
 const route = useRoute();
 const currentRouteName = ref()
+const showAddCollectionInput = ref(false)
 
 const getProfileImage = () => (user.value.picture ? user.value.picture : "");
 const logoutOnClick = () => logout({ returnTo: window.location.origin });
@@ -21,7 +22,7 @@ watch(
 );
 
 const addNewCollection = () => {
-  
+
 }
 
 
@@ -76,7 +77,7 @@ const addNewCollection = () => {
 
     <div class="drawer-side">
       <label for="nav-drawer" class="drawer-overlay"></label>
-      <ul class="flex menu p-6 overflow-y-auto w-1/2 sm:w-1/4 lg:w-full bg-base-200 text-base-content">
+      <ul class="flex menu p-8 overflow-y-auto w-1/2 sm:w-1/4 lg:w-full bg-base-200 text-base-content">
         <!-- Sidebar content here -->
         <div class="flex flex-col mt-3 text-center">
 
@@ -132,13 +133,22 @@ const addNewCollection = () => {
           </div>
 
           <!-- TODO: Add user specific actions here -->
-          <div v-if="isAuthenticated">
-            <div class="mt-5">
-              <h1 class="font-bold">Saved recipes</h1>
-              <button class="flex mt-3 text-primary hover:text-orange-400">
+          <!-- <div v-if="isAuthenticated" class="mt-5"> -->
+          <div class="mt-5">
+            <h1 class="font-bold">Saved recipes</h1>
+            <div v-if="!showAddCollectionInput">
+              <button @click="() => { showAddCollectionInput = true }"
+                class="flex mt-3 text-primary hover:text-orange-400">
                 <PlusIcon class="w-5" />
                 Add Collection
               </button>
+            </div>
+            <div v-else class="flex mt-3">
+              <!-- TODO: Fix the extending of navbar when this comes out -->
+              <label class="flex">
+                <input type="text" placeholder="Collection Name" class="input input-xs p-0" autofocus/>
+                <XMarkIcon class="w-5" />
+              </label>
             </div>
           </div>
         </div>
