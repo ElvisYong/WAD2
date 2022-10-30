@@ -2,16 +2,16 @@
 import { useAuth0 } from "@auth0/auth0-vue";
 import { watch } from "vue";
 import { useRoute } from 'vue-router';
-import { MagnifyingGlassIcon } from '@heroicons/vue/20/solid';
+import { MagnifyingGlassIcon, PlusIcon } from '@heroicons/vue/20/solid';
 
 const {
   loginWithPopup, logout, user, isAuthenticated,
 } = useAuth0();
+const route = useRoute();
+const currentRouteName = ref()
 
 const getProfileImage = () => (user.value.picture ? user.value.picture : "");
 const logoutOnClick = () => logout({ returnTo: window.location.origin });
-const route = useRoute();
-const currentRouteName = ref()
 
 watch(
   () => route.name,
@@ -19,6 +19,12 @@ watch(
     currentRouteName.value = route.name;
   }
 );
+
+const addNewCollection = () => {
+  
+}
+
+
 </script>
 
 <template>
@@ -58,8 +64,10 @@ watch(
             </label>
           </label>
           <!--avatar-->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         </div>
       </div>
@@ -68,7 +76,7 @@ watch(
 
     <div class="drawer-side">
       <label for="nav-drawer" class="drawer-overlay"></label>
-      <ul class="menu p-4 overflow-y-auto w-1/2 sm:w-1/4 lg:w-full bg-base-200 text-base-content">
+      <ul class="flex menu p-6 overflow-y-auto w-1/2 sm:w-1/4 lg:w-full bg-base-200 text-base-content">
         <!-- Sidebar content here -->
         <div class="flex flex-col mt-3 text-center">
 
@@ -81,16 +89,22 @@ watch(
 
           <!-- List of pages -->
           <div class="mt-3">
-            <div v-if="isAuthenticated">
-              <li>
+            <div v-if="isAuthenticated" class="flex">
+              <div v-if="getProfileImage() !== ''">
                 <div class="avatar center">
-                  <div class="w-16 rounded">
+                  <div class="rounded-full w-8">
                     <img :src="getProfileImage()" alt="" />
                   </div>
                 </div>
-                <a>{{ user.name }}</a>
-              </li>
-              <li @click="logoutOnClick"><a>Log out</a></li>
+              </div>
+              <div v-else>
+                <div class="avatar placeholder">
+                  <div class="bg-neutral-focus text-neutral-content rounded-full w-8">
+                    <span>{{ user.name ? user.name[0] : '?' }}</span>
+                  </div>
+                </div>
+              </div>
+              <a class="ml-3 self-center">{{ user.name }}</a>
             </div>
 
             <div v-else>
@@ -99,13 +113,13 @@ watch(
               </li>
             </div>
 
-            <div class="mt-5" 
+            <div class="mt-5"
               :class="currentRouteName === 'Home' ? 'border-l-2 border-primary active' : 'text-gray-600'">
               <a href="/">Home</a>
             </div>
             <div class="mt-3"
               :class="currentRouteName === 'MyRecipes' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/my-recipes">My Recipes</a> 
+              <a href="/my-recipes">My Recipes</a>
             </div>
             <div class="mt-3"
               :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
@@ -115,10 +129,22 @@ watch(
               :class="currentRouteName === 'CookingWishlist' ? 'border-l-2 border-primary active' : 'text-gray-600'">
               <a href="/wishlist">Cooking Wishlist</a>
             </div>
-          </div> 
+          </div>
 
           <!-- TODO: Add user specific actions here -->
-          
+          <div v-if="isAuthenticated">
+            <div class="mt-5">
+              <h1 class="font-bold">Saved recipes</h1>
+              <button class="flex mt-3 text-primary hover:text-orange-400">
+                <PlusIcon class="w-5" />
+                Add Collection
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="isAuthenticated" class="mx-auto mt-auto">
+          <TextLink @click="logoutOnClick()">Sign out</TextLink>
         </div>
       </ul>
 
