@@ -151,10 +151,6 @@ const addNewCollection = async (event) => {
               <a href="/">Home</a>
             </div>
             <div class="mt-3"
-              :class="currentRouteName === 'MyRecipes' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/my-recipes">My Recipes</a>
-            </div>
-            <div class="mt-3"
               :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
               <a href="/my-kitchen">My Kitchen</a>
             </div>
