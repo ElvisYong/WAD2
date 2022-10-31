@@ -28,6 +28,11 @@ const routes: RouteRecordRaw[] = [
     name: "CookingWishlist",
     component: () => import("./pages/wishlist.vue"),
   },
+  {
+    path: "/collections/:userId/:id",
+    name: "CookingWishlist",
+    component: () => import("./pages/wishlist.vue"),
+  },
 ];
 
 const router = createRouter({

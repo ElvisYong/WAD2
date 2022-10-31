@@ -183,8 +183,8 @@ const addNewCollection = async (event) => {
                 </label>
               </div>
 
-              <div v-for="collection in userCollections">
-                <div class="mt-1">
+              <div class="mt-1 max-h-56 overflow-y-scroll">
+                <div v-for="collection in userCollections">
                   <TextLink>
                     <div class="flex">
                       <FolderIcon class="w-5 mr-1" />
@@ -194,8 +194,6 @@ const addNewCollection = async (event) => {
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
 
