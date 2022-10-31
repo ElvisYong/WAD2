@@ -52,6 +52,8 @@ const addNewCollection = async (event) => {
       } catch (error) {
         console.log(error)
       }
+    } else if (res.response.value.status === 403) {
+      alert(res.data.value.message)
     }
   }
 }
