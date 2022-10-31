@@ -2,7 +2,7 @@
 import { useAuth0 } from "@auth0/auth0-vue";
 import { watch, onMounted } from "vue";
 import { useRoute } from 'vue-router';
-import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/vue/20/solid';
+import { MagnifyingGlassIcon, PlusIcon, XMarkIcon, FolderIcon } from '@heroicons/vue/20/solid';
 import { addCollections, getUserCollections } from "../../apis/collections";
 
 const { loginWithPopup, logout, user, isAuthenticated, } = useAuth0();
@@ -184,9 +184,12 @@ const addNewCollection = async (event) => {
               </div>
 
               <div v-for="collection in userCollections">
-                <div>
+                <div class="mt-1">
                   <TextLink>
-                    {{ collection.collectionName }}
+                    <div class="flex">
+                      <FolderIcon class="w-5 mr-1" />
+                      {{ collection.collectionName }}
+                    </div>
                   </TextLink>
                 </div>
               </div>
