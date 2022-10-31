@@ -14,15 +14,16 @@ const userCollections = ref([])
 const getProfileImage = () => (user.value.picture ? user.value.picture : "");
 const logoutOnClick = () => logout({ returnTo: window.location.origin });
 
-onBeforeMount(async () => {
-  try {
-    console.log(user.value)
-    if (user.value.sub) {
-      const response = await getUserCollections(user.value.sub)
-      userCollections.value = response.data.value
+watch(user, async () => {
+  if (user.value.sub) {
+    try {
+      if (user.value.sub) {
+        const res = await getUserCollections(user.value.sub)
+        userCollections.value = res.data.value
+      }
+    } catch (error) {
+      console.log(error)
     }
-  } catch (error) {
-    console.log(error)
   }
 })
 
@@ -30,7 +31,7 @@ watch(
   () => route.name,
   () => {
     currentRouteName.value = route.name;
-  }
+  },
 );
 
 const addNewCollection = async (event) => {
@@ -40,9 +41,19 @@ const addNewCollection = async (event) => {
   if (value === "" || value === null) {
     alert("Collection requires a name")
   } else {
-    const response = await addCollections(value, userId);
+    const res = await addCollections(value, userId);
+    if (res.response.value.status === 200) {
+      showAddCollectionInput.value = false
+      try {
+        if (user.value.sub) {
+          const res = await getUserCollections(user.value.sub)
+          userCollections.value = res.data.value
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
-
 }
 
 
@@ -170,6 +181,14 @@ const addNewCollection = async (event) => {
                     class="input input-xs p-0" autofocus />
                   <XMarkIcon class="w-5" />
                 </label>
+              </div>
+
+              <div v-for="collection in userCollections">
+                <div>
+                  <TextLink>
+                    {{ collection.collectionName }}
+                  </TextLink>
+                </div>
               </div>
             </div>
 
