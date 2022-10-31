@@ -1,8 +1,9 @@
-<script setup lang="ts">
+<script setup>
 import { useAuth0 } from "@auth0/auth0-vue";
 import { watch } from "vue";
 import { useRoute } from 'vue-router';
 import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/vue/20/solid';
+import { addCollections } from "../../apis/collections";
 
 const {
   loginWithPopup, logout, user, isAuthenticated,
@@ -21,7 +22,15 @@ watch(
   }
 );
 
-const addNewCollection = () => {
+const addNewCollection = async (event) => {
+  const value = event.target.value
+  const userId = user.value.sub
+
+  if (value === "" || value === null) {
+    alert("Collection requires a name")
+  } else {
+    const response = await addCollections(value, userId);
+  }
 
 }
 
@@ -146,7 +155,8 @@ const addNewCollection = () => {
             <div v-else class="flex mt-3">
               <!-- TODO: Fix the extending of navbar when this comes out -->
               <label class="flex">
-                <input type="text" placeholder="Collection Name" class="input input-xs p-0" autofocus/>
+                <input @keyup.enter="addNewCollection" type="text" placeholder="Collection Name"
+                  class="input input-xs p-0" autofocus />
                 <XMarkIcon class="w-5" />
               </label>
             </div>
