@@ -56,7 +56,6 @@ const addNewCollection = async (event) => {
   }
 }
 
-
 </script>
 
 <template>
@@ -163,7 +162,6 @@ const addNewCollection = async (event) => {
             </div>
           </div>
 
-          <!-- TODO: Add user specific actions here -->
           <div v-if="isAuthenticated" class="mt-5">
             <div class="mt-5">
               <h1 class="font-bold">Saved recipes</h1>
@@ -179,7 +177,7 @@ const addNewCollection = async (event) => {
                 <label class="flex">
                   <input @keyup.enter="addNewCollection" type="text" placeholder="Collection Name"
                     class="input input-xs p-0" autofocus />
-                  <XMarkIcon class="w-5" />
+                  <XMarkIcon @click="showAddCollectionInput = false" class="w-5 hover:cursor-pointer" />
                 </label>
               </div>
 
