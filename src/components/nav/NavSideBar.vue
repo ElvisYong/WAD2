@@ -1,19 +1,30 @@
 <script setup>
 import { useAuth0 } from "@auth0/auth0-vue";
-import { watch } from "vue";
+import { watch, onMounted } from "vue";
 import { useRoute } from 'vue-router';
 import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/vue/20/solid';
-import { addCollections } from "../../apis/collections";
+import { addCollections, getUserCollections } from "../../apis/collections";
 
-const {
-  loginWithPopup, logout, user, isAuthenticated,
-} = useAuth0();
+const { loginWithPopup, logout, user, isAuthenticated, } = useAuth0();
 const route = useRoute();
 const currentRouteName = ref()
 const showAddCollectionInput = ref(false)
+const userCollections = ref([])
 
 const getProfileImage = () => (user.value.picture ? user.value.picture : "");
 const logoutOnClick = () => logout({ returnTo: window.location.origin });
+
+onBeforeMount(async () => {
+  try {
+    console.log(user.value)
+    if (user.value.sub) {
+      const response = await getUserCollections(user.value.sub)
+      userCollections.value = response.data.value
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 watch(
   () => route.name,
@@ -142,24 +153,27 @@ const addNewCollection = async (event) => {
           </div>
 
           <!-- TODO: Add user specific actions here -->
-          <!-- <div v-if="isAuthenticated" class="mt-5"> -->
-          <div class="mt-5">
-            <h1 class="font-bold">Saved recipes</h1>
-            <div v-if="!showAddCollectionInput">
-              <button @click="() => { showAddCollectionInput = true }"
-                class="flex mt-3 text-primary hover:text-orange-400">
-                <PlusIcon class="w-5" />
-                Add Collection
-              </button>
+          <div v-if="isAuthenticated" class="mt-5">
+            <div class="mt-5">
+              <h1 class="font-bold">Saved recipes</h1>
+              <div v-if="!showAddCollectionInput">
+                <button @click="() => { showAddCollectionInput = true }"
+                  class="flex mt-3 text-primary hover:text-orange-400">
+                  <PlusIcon class="w-5" />
+                  Add Collection
+                </button>
+              </div>
+              <div v-else class="flex mt-3">
+                <!-- TODO: Fix the extending of navbar when this comes out -->
+                <label class="flex">
+                  <input @keyup.enter="addNewCollection" type="text" placeholder="Collection Name"
+                    class="input input-xs p-0" autofocus />
+                  <XMarkIcon class="w-5" />
+                </label>
+              </div>
             </div>
-            <div v-else class="flex mt-3">
-              <!-- TODO: Fix the extending of navbar when this comes out -->
-              <label class="flex">
-                <input @keyup.enter="addNewCollection" type="text" placeholder="Collection Name"
-                  class="input input-xs p-0" autofocus />
-                <XMarkIcon class="w-5" />
-              </label>
-            </div>
+
+
           </div>
         </div>
 
