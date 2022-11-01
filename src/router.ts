@@ -3,20 +3,15 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 
 const routes: RouteRecordRaw[] = [
   {
-      path: "/",
-      name: "Home",
-      component: () => import("./pages/home.vue"),
+    path: "/",
+    name: "Home",
+    component: () => import("./pages/home.vue"),
   },
   {
-      path: "/recipe-info/:id",
-      name: "RecipeInfo",
-      component: () => import("./pages/recipe-info.vue"),
-      props: true
-  },
-  {
-    path: "/my-recipes",
-    name: "MyRecipes",
-    component: () => import("./pages/my-recipes.vue"),
+    path: "/recipe-info/:id",
+    name: "RecipeInfo",
+    component: () => import("./pages/recipe-info.vue"),
+    props: true
   },
   {
     path: "/my-kitchen",
@@ -27,6 +22,11 @@ const routes: RouteRecordRaw[] = [
     path: "/wishlist",
     name: "CookingWishlist",
     component: () => import("./pages/wishlist.vue"),
+  },
+  {
+    path: "/collections/:userId/:id",
+    name: "Collections",
+    component: () => import("./pages/collections.vue"),
   },
 ];
 

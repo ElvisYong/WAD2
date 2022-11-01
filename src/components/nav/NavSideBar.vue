@@ -2,7 +2,7 @@
 import { useAuth0 } from "@auth0/auth0-vue";
 import { watch, onMounted } from "vue";
 import { useRoute } from 'vue-router';
-import { MagnifyingGlassIcon, PlusIcon, XMarkIcon } from '@heroicons/vue/20/solid';
+import { MagnifyingGlassIcon, PlusIcon, XMarkIcon, FolderIcon } from '@heroicons/vue/20/solid';
 import { addCollections, getUserCollections } from "../../apis/collections";
 
 const { loginWithPopup, logout, user, isAuthenticated, } = useAuth0();
@@ -14,15 +14,16 @@ const userCollections = ref([])
 const getProfileImage = () => (user.value.picture ? user.value.picture : "");
 const logoutOnClick = () => logout({ returnTo: window.location.origin });
 
-onBeforeMount(async () => {
-  try {
-    console.log(user.value)
-    if (user.value.sub) {
-      const response = await getUserCollections(user.value.sub)
-      userCollections.value = response.data.value
+watch(user, async () => {
+  if (user.value.sub) {
+    try {
+      if (user.value.sub) {
+        const res = await getUserCollections(user.value.sub)
+        userCollections.value = res.data.value
+      }
+    } catch (error) {
+      console.log(error)
     }
-  } catch (error) {
-    console.log(error)
   }
 })
 
@@ -30,7 +31,7 @@ watch(
   () => route.name,
   () => {
     currentRouteName.value = route.name;
-  }
+  },
 );
 
 const addNewCollection = async (event) => {
@@ -40,11 +41,22 @@ const addNewCollection = async (event) => {
   if (value === "" || value === null) {
     alert("Collection requires a name")
   } else {
-    const response = await addCollections(value, userId);
+    const res = await addCollections(value, userId);
+    if (res.response.value.status === 200) {
+      showAddCollectionInput.value = false
+      try {
+        if (user.value.sub) {
+          const res = await getUserCollections(user.value.sub)
+          userCollections.value = res.data.value
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    } else if (res.response.value.status === 403) {
+      alert(res.data.value.message)
+    }
   }
-
 }
-
 
 </script>
 
@@ -139,10 +151,6 @@ const addNewCollection = async (event) => {
               <a href="/">Home</a>
             </div>
             <div class="mt-3"
-              :class="currentRouteName === 'MyRecipes' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/my-recipes">My Recipes</a>
-            </div>
-            <div class="mt-3"
               :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
               <a href="/my-kitchen">My Kitchen</a>
             </div>
@@ -152,7 +160,6 @@ const addNewCollection = async (event) => {
             </div>
           </div>
 
-          <!-- TODO: Add user specific actions here -->
           <div v-if="isAuthenticated" class="mt-5">
             <div class="mt-5">
               <h1 class="font-bold">Saved recipes</h1>
@@ -168,12 +175,21 @@ const addNewCollection = async (event) => {
                 <label class="flex">
                   <input @keyup.enter="addNewCollection" type="text" placeholder="Collection Name"
                     class="input input-xs p-0" autofocus />
-                  <XMarkIcon class="w-5" />
+                  <XMarkIcon @click="showAddCollectionInput = false" class="w-5 hover:cursor-pointer" />
                 </label>
               </div>
+
+              <div class="mt-1 max-h-56 overflow-y-scroll">
+                <div v-for="collection in userCollections">
+                  <TextLink>
+                    <div class="flex">
+                      <FolderIcon class="w-5 mr-1" />
+                      {{ collection.collectionName }}
+                    </div>
+                  </TextLink>
+                </div>
+              </div>
             </div>
-
-
           </div>
         </div>
 
