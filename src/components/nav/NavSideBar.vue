@@ -7,6 +7,7 @@ import { addCollections, getUserCollections } from "../../apis/collections";
 
 const { loginWithPopup, logout, user, isAuthenticated, } = useAuth0();
 const route = useRoute();
+const router = useRouter();
 const currentRouteName = ref()
 const showAddCollectionInput = ref(false)
 const userCollections = ref([])
@@ -56,6 +57,16 @@ const addNewCollection = async (event) => {
       alert(res.data.value.message)
     }
   }
+}
+
+const gotoCollectionPage = (collection) => {
+  router.push(
+    {
+      path: '/collection/:userId/:name',
+      name: 'Collection',
+      params: {userId: collection.userId, name: collection.collectionName },
+    }
+  )
 }
 
 </script>
@@ -181,7 +192,7 @@ const addNewCollection = async (event) => {
 
               <div class="mt-1 max-h-56 overflow-y-scroll">
                 <div v-for="collection in userCollections">
-                  <TextLink>
+                  <TextLink @click="gotoCollectionPage(collection)">
                     <div class="flex">
                       <FolderIcon class="w-5 mr-1" />
                       {{ collection.collectionName }}
