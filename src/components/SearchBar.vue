@@ -10,12 +10,14 @@ import {
 } from '@headlessui/vue'
 import { CheckIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 import { getAutocompleteSearch } from '../apis/recipes'
+import { useRouter } from 'vue-router'
 import debounced from "lodash.debounce"
 
 let recipes = ref([])
-
 let selected = ref()
 let searchTerm = ref('')
+
+const router = useRouter()
 
 const debouncedSearch = debounced(async (searchTerm) => {
   const response = await getAutocompleteSearch(searchTerm)
@@ -43,6 +45,15 @@ let filteredRecipes = computed(() => {
   })
 })
 
+const gotoRecipeInfo = (recipe) => {
+  router.push(
+    {
+      path: '/recipe-info/:id',
+      name: 'RecipeInfo',
+      params: { id: recipe.id },
+    })
+}
+
 </script>
 
 <template>
@@ -55,11 +66,11 @@ let filteredRecipes = computed(() => {
             <MagnifyingGlassIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
           </ComboboxButton>
           <ComboboxInput class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-            :displayValue="(recipe) => recipe && recipe.value.title" @change="searchTerm = $event.target.value" />
+            :displayValue="(recipe) => recipe && recipe.value" @change="searchTerm = $event.target.value" />
         </div>
 
         <TransitionRoot leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0"
-          @after-leave="searchTerm=''">
+          @after-leave="searchTerm = ''">
           <ComboboxOptions
             class="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
             <div v-if="recipes.length === 0 && searchTerm !== ''"
@@ -73,7 +84,9 @@ let filteredRecipes = computed(() => {
                 'bg-teal-600 text-white': active,
                 'text-gray-900': !active,
               }">
-                <span class="block truncate" :class="{ 'font-medium': selected, 'font-normal': !selected }">
+                <span @click="gotoRecipeInfo(recipe)" class="block truncate"
+                  :class="{ 'font-medium': selected, 'font-normal': !selected }">
+
                   {{ recipe.title }}
                 </span>
                 <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3"

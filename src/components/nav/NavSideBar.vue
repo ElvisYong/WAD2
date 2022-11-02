@@ -1,7 +1,7 @@
 <script setup>
 import { useAuth0 } from "@auth0/auth0-vue";
-import { watch, onMounted } from "vue";
-import { useRoute } from 'vue-router';
+import { watch } from "vue";
+import { useRoute, useRouter } from 'vue-router';
 import { MagnifyingGlassIcon, PlusIcon, XMarkIcon, FolderIcon } from '@heroicons/vue/20/solid';
 import { addCollections, getUserCollections } from "../../apis/collections";
 
@@ -12,11 +12,11 @@ const currentRouteName = ref()
 const showAddCollectionInput = ref(false)
 const userCollections = ref([])
 
-const getProfileImage = () => (user.value.picture ? user.value.picture : "");
+const getProfileImage = () => (user.value && user.value.picture ? user.value.picture : "");
 const logoutOnClick = () => logout({ returnTo: window.location.origin });
 
 watch(user, async () => {
-  if (user.value.sub) {
+  if (user.value) {
     try {
       if (user.value.sub) {
         const res = await getUserCollections(user.value.sub)
@@ -64,7 +64,7 @@ const gotoCollectionPage = (collection) => {
     {
       path: '/collection/:userId/:name',
       name: 'Collection',
-      params: {userId: collection.userId, name: collection.collectionName },
+      params: { userId: collection.userId, name: collection.collectionName },
     }
   )
 }
