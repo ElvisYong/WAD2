@@ -1,55 +1,38 @@
 <script setup>
 const props = defineProps(['recipe'])
 const recipe = ref(props.recipe)
-const rating = ref(0)
-
-// Calculate the rating from spoonacular
-if (recipe.spoonacularScore) {
-  rating.value = Math.round((recipe.spoonacularScore / 100) * 10)
-}
 
 </script>
 
 <template>
   <div class="flex flex-col lg:gap-16 xl:gap-28 lg:flex-row">
-    <div class="flex flex-col order-last  lg:order-first">
+    <div class="flex flex-col order-last lg:order-first my-auto">
       <div>
         <!-- Recipe title -->
         <h1 class="font-bold text-2xl">{{ recipe.title }}</h1>
 
         <!-- Recipe Source -->
         <div>
-          <TextLink>{{ recipe.sourceName }}</TextLink>
-        </div>
-
-        <!-- Ratings -->
-        <div class="rating mt-3">
-          <div v-for="i in rating">
-            <input name="rating-2" class="mask mask-star-2 bg-orange-400" />
-          </div>
-          <div v-for="i in 5 - rating">
-            <input name="rating-2" class="mask mask-star-2 bg-gray-400" />
-          </div>
+          <a :href="recipe.sourceUrl">
+            <TextLink>{{ recipe.sourceName }}</TextLink>
+          </a>
         </div>
 
         <!-- Badges -->
-        <div class="flex flex-row my-4 gap-2">
+        <div class="flex flex-row mt-3 gap-2">
           <div v-for="dishType in recipe.dishTypes">
-            <div class="badge badge-primary">{{ dishType }}</div>
+            <div class="badge badge-secondary">{{ dishType }}</div>
           </div>
         </div>
       </div>
 
-      <!-- Health Score -->
-      <div class="flex flex-col my-4">
-        <div class="radial-progress text-primary" :style="{ '--value': recipe.healthScore }" style="--thickness: 3px;">
-          {{ recipe.healthScore }}/100
-        </div>
-        <h1 class="font-medium">Health Score</h1>
+      <!-- Buttons and stuff -->
+      <div class="flex mt-3 ">
+
       </div>
 
       <!-- Recipe stats -->
-      <div class="mt-auto">
+      <div class="">
         <RecipeStats :recipe=recipe />
       </div>
     </div>
@@ -62,5 +45,17 @@ if (recipe.spoonacularScore) {
       </div>
     </div>
 
+    <input type="checkbox" id="summary-modal" class="modal-toggle" />
+    <div class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Summary</h3>
+        <p class="py-4">
+        <div v-html="recipe.summary"></div>
+        </p>
+        <div class="modal-action">
+          <label for="summary-modal" class="btn">Yay!</label>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
