@@ -38,3 +38,15 @@ export const getRecipeById = async (id: number, includeNutrition: boolean) => {
     `${RECIPE_ENDPOINT}/${id}/information?includeNutrition=${includeNutrition}`,
   ).get().json();
 }
+
+/**
+ * 
+ * @param ids - ids in comma separated format
+ * @returns 
+ */
+export const getRecipeInBulk = async (ids: string[]) => {
+  const idsString = ids.join(",");
+  return await useFetch(
+    `${RECIPE_ENDPOINT}/bulk?ids=${idsString}`,
+  )
+}
