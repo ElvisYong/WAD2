@@ -26,3 +26,15 @@ export const getUserCollections = async (userId: string) => {
     `${COLLECTIONS_ENDPOINT}?userId=${userId}`,
   ).get().json();
 }
+
+/**
+ * 
+ * @param userId - user sub details from auth0
+ * @param name - collection name
+ * @returns 
+ */
+export const getUserCollectionByName = async (userId: string, name: string) => {
+  return await useFetch(
+    `${COLLECTIONS_ENDPOINT}/${userId}/${name}`,
+  ).get().json();
+}
