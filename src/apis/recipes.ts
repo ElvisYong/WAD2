@@ -44,7 +44,7 @@ export const getRecipeById = async (id: number, includeNutrition: boolean) => {
  * @param ids - ids in comma separated format
  * @returns 
  */
-export const getRecipeInBulk = async (ids: string[]) => {
+export const getRecipesInBulk = async (ids: string[]) => {
   const idsString = ids.join(",");
   return await useFetch(
     `${RECIPE_ENDPOINT}/bulk?ids=${idsString}`,
