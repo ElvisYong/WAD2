@@ -4580,6 +4580,7 @@ onMounted(async () => {
         <div v-else class="lg:mt-14 mb-10">
             <Summary :recipe="recipe" />
 
+            <div class="mt-10 divider"></div>
             <div class="mt-16">
                 <Instructions :recipe="recipe" />
             </div>
