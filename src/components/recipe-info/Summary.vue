@@ -26,13 +26,8 @@ const recipe = ref(props.recipe)
         </div>
       </div>
 
-      <!-- Buttons and stuff -->
-      <div class="flex mt-3 ">
-
-      </div>
-
       <!-- Recipe stats -->
-      <div class="">
+      <div class="mt-3">
         <RecipeStats :recipe=recipe />
       </div>
     </div>
