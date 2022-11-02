@@ -16,7 +16,7 @@ onMounted(async () => {
     // Bulk fetch the recipes once we get user collections
     if (collectionResponse.data.value) {
       collection.value = collectionResponse.data.value;
-      const recipesResponse = await getRecipesInBulk(collectionResponse.data.value.data)
+      const recipesResponse = await getRecipesInBulk(collectionResponse.data.value.recipes)
       recipes.value = recipesResponse.data.value
     }
   } catch (error) {
