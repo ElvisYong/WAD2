@@ -4571,48 +4571,18 @@ onMounted(async () => {
 }
 </route>
 
-<!-- ORIGINAL
-    <template>
-    <div class="mx-auto">
+<template>
+    <div class="mx-auto max-w-4xl">
         <div v-if="recipe === null" class="mt-10">
             <Loader />
         </div>
 
-        <div v-else class="lg:mt-24 mb-10">
-            // Summary Wrapper
+        <div v-else class="lg:mt-14 mb-10">
             <Summary :recipe="recipe" />
 
-            // Instructions 
             <div class="mt-16">
                 <Instructions :recipe="recipe" />
             </div>
         </div>
     </div>
-</template> -->
-
-<template>
-    <div>
-        <div v-if="recipe === null" class="mt-10">
-            <Loader />
-        </div>
-
-        <div v-else class="lg:mt-24 mb-10">
-            <!-- Summary Wrapper -->
-            <div class="container grid grid-cols-12">
-                <div class=""></div>
-                <div>
-                    <Summary :recipe="recipe" />
-                </div>
-                <div class=""></div>
-            </div>
-            <!-- Instructions -->
-            <div class="container grid grid-cols-7 mt-10">
-                <div class=""></div>
-                <div class="col-span-5">
-                    <Instructions :recipe="recipe" />
-                </div>
-                <div class=""></div>
-            </div>
-        </div>
-    </div>
-</template>
+</template> 
