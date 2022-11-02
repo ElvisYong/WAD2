@@ -48,5 +48,5 @@ export const getRecipeInBulk = async (ids: string[]) => {
   const idsString = ids.join(",");
   return await useFetch(
     `${RECIPE_ENDPOINT}/bulk?ids=${idsString}`,
-  )
+  ).get().json()
 }
