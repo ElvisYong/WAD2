@@ -40,17 +40,5 @@ const recipe = ref(props.recipe)
       </div>
     </div>
 
-    <input type="checkbox" id="summary-modal" class="modal-toggle" />
-    <div class="modal modal-bottom sm:modal-middle">
-      <div class="modal-box">
-        <h3 class="font-bold text-lg">Summary</h3>
-        <p class="py-4">
-        <div v-html="recipe.summary"></div>
-        </p>
-        <div class="modal-action">
-          <label for="summary-modal" class="btn">Yay!</label>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
