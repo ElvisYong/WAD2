@@ -4583,8 +4583,11 @@ onMounted(async () => {
             <div class="mt-10 divider"></div>
 
             <!-- TODO: Add ingredients -->
+            <div class="mt-12">
+                <Ingredients :recipe="recipe" />
+            </div>
 
-            <div class="mt-16">
+            <div class="mt-10">
                 <Instructions :recipe="recipe" />
             </div>
         </div>
