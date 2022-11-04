@@ -1,4 +1,6 @@
 <script setup>
+import { StarIcon } from '@heroicons/vue/20/solid';
+
 const props = defineProps(['recipe'])
 const recipe = ref(props.recipe)
 
@@ -33,9 +35,17 @@ const recipe = ref(props.recipe)
     </div>
 
     <div class="mx-auto md:mr-auto">
-      <div class="avatar mr-0">
-        <div class="w-96 rounded">
-          <img :src="recipe.image" :alt="recipe.title" />
+      <div class="indicator">
+        <div class="indicator-item indicator-top">
+          <button class="btn btn-primary btn-circle">
+            <StarIcon class="h-5 w-5" />
+          </button>
+        </div>
+        <div class="avatar mr-0">
+          <div class="w-96 rounded">
+            <img :src="recipe.image" :alt="recipe.title" />
+          </div>
+
         </div>
       </div>
     </div>
