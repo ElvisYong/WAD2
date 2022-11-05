@@ -8,7 +8,7 @@ const route = useRoute();
 const collection = ref(null)
 const recipes = ref(null)
 
-onMounted(async () => {
+const fetchCollectionData = async () => {
   const userId = route.params.userId
   const collectionName = route.params.name
   try {
@@ -22,6 +22,17 @@ onMounted(async () => {
   } catch (error) {
     console.log(error)
   }
+}
+
+watch(
+  () => route.params.name,
+  async () => {
+    await fetchCollectionData()
+  },
+);
+
+onMounted(async () => {
+  await fetchCollectionData()
 });
 
 </script>
