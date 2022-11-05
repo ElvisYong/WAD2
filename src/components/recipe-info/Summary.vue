@@ -3,8 +3,11 @@ import { onMounted } from "vue";
 import { useAuth0 } from "@auth0/auth0-vue";
 import { StarIcon } from '@heroicons/vue/20/solid';
 import { addRecipeIdToCollection, getUserCollections, deleteRecipeIdFromCollection } from "../../apis/collections";
+import { useToast } from "vue-toastification";
 
+const toast = useToast();
 const { user, isAuthenticated } = useAuth0();
+
 const props = defineProps(['recipe'])
 const recipe = ref(props.recipe)
 const userCollections = ref([])
@@ -42,7 +45,12 @@ const addToCollection = async (collectionName) => {
     const recipeId = recipe.value.id
 
     
-    await addRecipeIdToCollection(userId, collectionName, recipeId)
+    let res = await addRecipeIdToCollection(userId, collectionName, recipeId)
+    if(res.statusCode.value === 200){
+      toast.success("Added to collection")
+    } else {
+      toast.error("Failed to add to collection")
+    }
   }
 }
 
@@ -51,7 +59,12 @@ const removeFromCollection = async (collectionName) => {
     const userId = user.value.sub
     const recipeId = recipe.value.id
 
-    await deleteRecipeIdFromCollection(userId, collectionName, recipeId)
+    let res = await deleteRecipeIdFromCollection(userId, collectionName, recipeId)
+    if(res.statusCode.value === 200){
+      toast.success("Delete from collection")
+    } else {
+      toast.error("Failed to add to collection")
+    }
   }
 }
 
