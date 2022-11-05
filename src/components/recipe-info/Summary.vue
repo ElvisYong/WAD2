@@ -2,26 +2,67 @@
 import { onMounted } from "vue";
 import { useAuth0 } from "@auth0/auth0-vue";
 import { StarIcon } from '@heroicons/vue/20/solid';
-import { addCollections, getUserCollections } from "../../apis/collections";
+import { addRecipeIdToCollection, getUserCollections, deleteRecipeIdFromCollection } from "../../apis/collections";
 
 const { user, isAuthenticated } = useAuth0();
 const props = defineProps(['recipe'])
 const recipe = ref(props.recipe)
 const userCollections = ref([])
+const checkedBoxes = ref([])
+
+watch(checkedBoxes, () => {
+  console.log(checkedBoxes.value)
+})
+
 
 onMounted(async () => {
   if (user.value) {
     try {
       if (user.value.sub) {
         const res = await getUserCollections(user.value.sub)
-        console.log(res.data.value)
         userCollections.value = res.data.value
+
+        // Populate the checkbox
+        for(const collection of res.data.value) {
+          console.log(collection)
+          if (collection.recipes.includes(recipe.value.id)) {
+            checkedBoxes.value.push(collection.collectionName)
+          }
+        }
       }
     } catch (error) {
       console.log(error)
     }
   }
 })
+
+const addToCollection = async (collectionName) => {
+  if(user.value) {
+    const userId = user.value.sub
+    const recipeId = recipe.value.id
+
+    
+    await addRecipeIdToCollection(userId, collectionName, recipeId)
+  }
+}
+
+const removeFromCollection = async (collectionName) => {
+  if(user.value) {
+    const userId = user.value.sub
+    const recipeId = recipe.value.id
+
+    await deleteRecipeIdFromCollection(userId, collectionName, recipeId)
+  }
+}
+
+const checkEvent = async (event) => {
+  const collectionName = event.target.id
+  if (event.target.checked) {
+    await addToCollection(collectionName)
+  } else {
+    await removeFromCollection(collectionName)
+  }
+}
 
 </script>
 
@@ -70,8 +111,8 @@ onMounted(async () => {
     </div>
 
     <input type="checkbox" id="collectionsModal" class="modal-toggle" />
-    <div class="modal">
-      <div class="modal-box w-11/12 max-w-5xl">
+    <div class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
         <h3 class="font-bold text-lg">Save To Collections</h3>
         <div v-if="isAuthenticated">
           <div v-if="userCollections.length === 0">
@@ -80,13 +121,13 @@ onMounted(async () => {
           <!-- checkbox -->
           <div v-else v-for="collection in userCollections">
             <div class="flex flex-row items-center gap-2">
-              <input type="checkbox" :id="collection.collectionName" />
+              <input @change="checkEvent" type="checkbox" v-model="checkedBoxes" :value="collection.collectionName" :id="collection.collectionName" />
               <label :for="collection.collectionName">{{ collection.collectionName }}</label>
             </div>
           </div>
         </div>
         <div v-else>
-          <p>Hello</p>
+          <p>Failed to get collections</p>
         </div>
         <div class="modal-action">
           <label for="collectionsModal" class="btn">Yay!</label>

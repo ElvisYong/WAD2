@@ -38,3 +38,30 @@ export const getUserCollectionByName = async (userId: string, name: string) => {
     `${COLLECTIONS_ENDPOINT}/${userId}/${name}`,
   ).get().json();
 }
+
+/**
+ * 
+ * @param userId - user sub details from auth0
+ * @param name - collection name
+ * @param recipeId - recipe id
+ * @returns 
+ */
+export const addRecipeIdToCollection = async (userId: string, name: string, recipeId: number) => {
+  return await useFetch(
+    `${COLLECTIONS_ENDPOINT}/${userId}/${name}?recipeId=${recipeId}`,
+  ).put().json();
+}
+
+
+/**
+ * 
+ * @param userId - user sub details from auth0
+ * @param name - collection name
+ * @param recipeId - recipe id
+ * @returns 
+ */
+export const deleteRecipeIdFromCollection = async (userId: string, name: string, recipeId: number) => {
+  return await useFetch(
+    `${COLLECTIONS_ENDPOINT}/${userId}/${name}?recipeId=${recipeId}`,
+  ).delete().json();
+}
