@@ -158,10 +158,6 @@ const gotoCollectionPage = (collection) => {
               :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
               <a href="/my-kitchen">My Kitchen</a>
             </div>
-            <div class="mt-3"
-              :class="currentRouteName === 'CookingWishlist' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/wishlist">Cooking Wishlist</a>
-            </div>
           </div>
 
           <div v-if="isAuthenticated" class="mt-5">
@@ -183,7 +179,7 @@ const gotoCollectionPage = (collection) => {
                 </label>
               </div>
 
-              <div class="mt-1 max-h-56 overflow-y-scroll">
+              <div class="mt-1 max-h-56 overflow-y-auto">
                 <div v-for="collection in userCollections">
                   <TextLink @click="gotoCollectionPage(collection)">
                     <div class="flex">

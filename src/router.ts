@@ -19,11 +19,6 @@ const routes: RouteRecordRaw[] = [
     component: () => import("./pages/my-kitchen.vue"),
   },
   {
-    path: "/wishlist",
-    name: "CookingWishlist",
-    component: () => import("./pages/wishlist.vue"),
-  },
-  {
     path: "/collection/:userId/:name",
     name: "Collection",
     component: () => import("./pages/collections.vue"),
