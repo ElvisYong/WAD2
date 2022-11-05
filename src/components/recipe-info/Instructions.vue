@@ -28,7 +28,7 @@ if (recipe.analyzedInstructions.length > 0) {
       <div class="col-8">
         <h1 class="font-bold text-xl">Instructions:</h1>
         <div v-for="instruction in instructionSteps">
-          <p class="mt1 p-1">{{ instruction.number }}: {{ instruction.step }}</p>
+          <p class="mt-1 p-1">{{ instruction.number }}: {{ instruction.step }}</p>
         </div>
       </div>
       <div class="col-2"></div>

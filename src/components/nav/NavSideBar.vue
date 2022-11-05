@@ -96,15 +96,8 @@ const gotoCollectionPage = (collection) => {
           <!-- the modal -->
           <input type="checkbox" id="popupmodal" class="modal-toggle" />
           <label for="popupmodal" class="modal cursor-pointer">
-            <label class="modal-box relative" for="">
+            <label class="relative" for="">
               <SearchBar />
-              <!--hardcoded for now-->
-              <h2 class="mt-4 mb-2">Recent Searches</h2>
-              <h3 class="p-1">Beef Briyani</h3>
-              <hr>
-              <h3 class="p-1">Mushroom Galette</h3>
-              <hr>
-              <h3 class="p-1">Tonkatsu Ramen</h3>
             </label>
           </label>
           <!--avatar-->

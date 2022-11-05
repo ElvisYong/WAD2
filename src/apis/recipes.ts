@@ -50,3 +50,14 @@ export const getRecipesInBulk = async (ids: string[]) => {
     `${RECIPE_ENDPOINT}/bulk?ids=${idsString}`,
   ).get().json()
 }
+
+/**
+ * 
+ * @param recipeId - id of the recipe
+ * @returns 
+ */
+export const getRecipeTasteWidgetById = async (recipeId: number) => {
+  return await useFetch(
+    `${RECIPE_ENDPOINT}/tasteWidget/${recipeId}`
+  ).get();
+}
