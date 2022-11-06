@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     CuisinesCarousel: typeof import('./src/components/home/CuisinesCarousel.vue')['default']
     GeneralSearchBar: typeof import('./src/components/GeneralSearchBar.vue')['default']
     Ingredients: typeof import('./src/components/recipe-info/Ingredients.vue')['default']
+    IngredientsSearchBar: typeof import('./src/components/IngredientsSearchBar.vue')['default']
     Instructions: typeof import('./src/components/recipe-info/Instructions.vue')['default']
     Loader: typeof import('./src/components/Loader.vue')['default']
     NavSideBar: typeof import('./src/components/nav/NavSideBar.vue')['default']
