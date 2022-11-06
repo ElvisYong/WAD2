@@ -61,3 +61,15 @@ export const getRecipeTasteWidgetById = async (recipeId: number) => {
     `${RECIPE_ENDPOINT}/tasteWidget/${recipeId}`
   ).get();
 }
+
+/**
+ * 
+ * @param ingredients - ids in comma separated format
+ * @returns 
+ */
+export const getRecipesByIngredients = async (ingredients: string[], number: number) => {
+  const ingredientsString = ingredients.join(",");
+  return await useFetch(
+    `${RECIPE_ENDPOINT}/findByIngredients?ingredients=${ingredientsString}&number=${number}`,
+  ).get().json()
+}
