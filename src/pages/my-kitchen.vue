@@ -1,7 +1,18 @@
 <script setup>
+import { ref, watch } from 'vue'
+
 useHead({
     title: "My Kitchen",
 });
+
+const selectedIngredients = ref([]);
+
+
+const addIngredient = (ingredient) => {
+    selectedIngredients.value.push(ingredient);
+    // TODO: Once new ingredients are added populate the page with badges of the ingredients
+}
+
 </script>
 
 <template>
@@ -18,7 +29,7 @@ useHead({
             </p>
 
             <div class="mt-6">
-                <IngredientsSearchBar />
+                <IngredientsSearchBar @selectedIngredient="addIngredient" />
             </div>
         </div>
     </div>
