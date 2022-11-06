@@ -31,6 +31,24 @@ const addIngredient = (ingredient) => {
             <div class="mt-6">
                 <IngredientsSearchBar @selectedIngredient="addIngredient" />
             </div>
+
+            <div v-if="selectedIngredients.value.length > 0">
+                <div class="mt-6">
+                    <h1 class="text-2xl">Selected Ingredients</h1>
+                    <div class="mt-6">
+                        <div v-for="ingredient in selectedIngredients.value" class="inline-block">
+                            <div class="badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    class="inline-block w-4 h-4 stroke-current">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                                {{ ingredient.name }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
