@@ -97,7 +97,7 @@ const gotoCollectionPage = (collection) => {
           <input type="checkbox" id="popupmodal" class="modal-toggle" />
           <label for="popupmodal" class="modal cursor-pointer">
             <label class="relative" for="">
-              <SearchBar />
+              <GeneralSearchBar />
             </label>
           </label>
           <!--avatar-->

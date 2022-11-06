@@ -4570,7 +4570,7 @@ const randomRecipes = ref([{
 <template>
   <div class="mx-auto">
     <div class="hidden mx-auto mt-6 lg:flex">
-      <SearchBar />
+      <GeneralSearchBar />
     </div>
 
     <!-- <div class="mt-10">
