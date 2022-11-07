@@ -5,12 +5,23 @@ useHead({
     title: "My Kitchen",
 });
 
-const selectedIngredients = ref([]);
+const selectedIngredients = ref([{
+    name: "water"
+}, {
+    name: "salt"
+},
+{
+    name: "olive oil"
+}])
 
 
 const addIngredient = (ingredient) => {
     selectedIngredients.value.push(ingredient);
-    // TODO: Once new ingredients are added populate the page with badges of the ingredients
+    console.log(selectedIngredients.value)
+}
+
+const removeIngredient = (index) => {
+    selectedIngredients.value.splice(index, 1);
 }
 
 </script>
@@ -32,14 +43,14 @@ const addIngredient = (ingredient) => {
                 <IngredientsSearchBar @selectedIngredient="addIngredient" />
             </div>
 
-            <div v-if="selectedIngredients.value.length > 0">
+            <div v-if="selectedIngredients.length > 0">
                 <div class="mt-6">
                     <h1 class="text-2xl">Selected Ingredients</h1>
-                    <div class="mt-6">
-                        <div v-for="ingredient in selectedIngredients.value" class="inline-block">
-                            <div class="badge">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    class="inline-block w-4 h-4 stroke-current">
+                    <div class="flex mt-6 gap-1">
+                        <div v-for="(ingredient, index) in selectedIngredients">
+                            <div class="badge badge-secondary">
+                                <svg @click="removeIngredient(index)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    class="inline-block w-4 h-4 stroke-current hover:cursor-pointer">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
@@ -48,6 +59,10 @@ const addIngredient = (ingredient) => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="mt-6">
+                <button class="btn btn-primary">Search Ready Recipes</button>
             </div>
         </div>
     </div>
