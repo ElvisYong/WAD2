@@ -113,11 +113,11 @@ const gotoCollectionPage = (collection) => {
 
     <div class="drawer-side">
       <label for="nav-drawer" class="drawer-overlay"></label>
-      <ul class="flex menu p-8 overflow-y-auto w-1/2 sm:w-1/4 lg:w-full bg-base-200 text-base-content">
+      <ul class="flex menu p-6 overflow-y-auto w-40 lg:w-60 bg-base-200 text-base-content">
         <!-- Sidebar content here -->
-        <div class="flex flex-col mt-3 text-center">
+        <div class="flex flex-col mt-3 w-full text-center">
 
-          <div class="w-3/4 self-center @click:">
+          <div class="self-center @click:">
             <a href="/">
               <img src="/logo.png" />
             </a>
