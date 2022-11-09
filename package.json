@@ -1,6 +1,6 @@
 {
   "name": "wad2-cookbook",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
