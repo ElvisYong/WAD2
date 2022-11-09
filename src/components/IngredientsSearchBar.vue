@@ -75,7 +75,7 @@ let filteredIngredients = computed(() => {
                 'bg-teal-600 text-white': active,
                 'text-gray-900': !active,
               }">
-                <span @click="$emit('selectedIngredient', ingredient)" class="block truncate" :class="{ 'font-medium': selected, 'font-normal': !selected }">
+                <span @click="$emit('selectedIngredient', ingredient.name)" class="block truncate" :class="{ 'font-medium': selected, 'font-normal': !selected }">
                   {{ ingredient.name }}
                 </span>
                 <span v-if="selected" class="absolute inset-y-0 left-0 flex items-center pl-3"
