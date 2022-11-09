@@ -8,10 +8,20 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ButtonRepo: typeof import('./src/components/ButtonRepo.vue')['default']
-    LoginButton: typeof import('./src/components/LoginButton.vue')['default']
-    LogoutButton: typeof import('./src/components/LogoutButton.vue')['default']
-    Profile: typeof import('./src/components/Profile.vue')['default']
+    CardItem: typeof import('./src/components/home/CardItem.vue')['default']
+    CuisinesCarousel: typeof import('./src/components/home/CuisinesCarousel.vue')['default']
+    GeneralSearchBar: typeof import('./src/components/GeneralSearchBar.vue')['default']
+    Ingredients: typeof import('./src/components/recipe-info/Ingredients.vue')['default']
+    IngredientsSearchBar: typeof import('./src/components/IngredientsSearchBar.vue')['default']
+    Instructions: typeof import('./src/components/recipe-info/Instructions.vue')['default']
+    Loader: typeof import('./src/components/Loader.vue')['default']
+    NavSideBar: typeof import('./src/components/nav/NavSideBar.vue')['default']
+    PreferenceForm: typeof import('./src/components/home/PreferenceForm.vue')['default']
+    RecipesGrid: typeof import('./src/components/home/RecipesGrid.vue')['default']
+    RecipeStats: typeof import('./src/components/recipe-info/RecipeStats.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Summary: typeof import('./src/components/recipe-info/Summary.vue')['default']
+    TextLink: typeof import('./src/components/TextLink.vue')['default']
   }
 }

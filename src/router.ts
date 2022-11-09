@@ -3,16 +3,25 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 
 const routes: RouteRecordRaw[] = [
   {
-      path: "/",
-      name: "Dashboard",
-      component: () => import("./pages/index.vue"),
-      beforeEnter: authGuard,
+    path: "/",
+    name: "Home",
+    component: () => import("./pages/home.vue"),
   },
   {
-      path: "/about",
-      name: "About",
-      component: () => import("./pages/about.vue"),
-      beforeEnter: authGuard,
+    path: "/recipe-info/:id",
+    name: "RecipeInfo",
+    component: () => import("./pages/recipe-info.vue"),
+    props: true
+  },
+  {
+    path: "/my-kitchen",
+    name: "MyKitchen",
+    component: () => import("./pages/my-kitchen.vue"),
+  },
+  {
+    path: "/collection/:userId/:name",
+    name: "Collection",
+    component: () => import("./pages/collections.vue"),
   },
 ];
 
