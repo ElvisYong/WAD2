@@ -1,20 +1,36 @@
 <script setup>
 import { getRandomRecommendations } from '../apis/recipes'
+import { useInfiniteScroll } from '@vueuse/core'
 
 useHead({
   title: "Home",
 });
 
+const el = ref(null);
 const randomRecipes = ref(null);
 
-onMounted(async () => {
+const fetchGetRandomRecommendations = async (number) => {
   try {
-    const response = await getRandomRecommendations(false, "meat,lunch", 10)
+    const response = await getRandomRecommendations(false, "meat,lunch", number)
     randomRecipes.value = response.data.value.recipes
   } catch (error) {
     console.log(error)
   }
+}
+
+onMounted(async () => {
+  await fetchGetRandomRecommendations(10)
 })
+
+useInfiniteScroll(el, async () => {
+  const response = await fetchGetRandomRecommendations(10);
+  // randomRecipes without dups from response
+  const dataWithPotentialDups = [...randomRecipes.value, ...response.data.value.recipes]
+  const dataWithoutDups = [...new Set(dataWithPotentialDups)]
+
+  randomRecipes.value = dataWithoutDups;
+}, { distance: 10 })
+
 
 </script>
 
@@ -35,7 +51,7 @@ onMounted(async () => {
     <div v-if="randomRecipes === null" class="mt-3">
       <Loader />
     </div>
-    <div v-else>
+    <div ref="el" v-else>
       <RecipesGrid :recipes="randomRecipes" />
     </div>
   </div>
