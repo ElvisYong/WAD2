@@ -10,7 +10,9 @@ declare module '@vue/runtime-core' {
     ButtonRepo: typeof import('./src/components/ButtonRepo.vue')['default']
     CardItem: typeof import('./src/components/home/CardItem.vue')['default']
     CuisinesCarousel: typeof import('./src/components/home/CuisinesCarousel.vue')['default']
+    GeneralSearchBar: typeof import('./src/components/GeneralSearchBar.vue')['default']
     Ingredients: typeof import('./src/components/recipe-info/Ingredients.vue')['default']
+    IngredientsSearchBar: typeof import('./src/components/IngredientsSearchBar.vue')['default']
     Instructions: typeof import('./src/components/recipe-info/Instructions.vue')['default']
     Loader: typeof import('./src/components/Loader.vue')['default']
     NavSideBar: typeof import('./src/components/nav/NavSideBar.vue')['default']
@@ -19,7 +21,6 @@ declare module '@vue/runtime-core' {
     RecipeStats: typeof import('./src/components/recipe-info/RecipeStats.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SearchBar: typeof import('./src/components/SearchBar.vue')['default']
     Summary: typeof import('./src/components/recipe-info/Summary.vue')['default']
     TextLink: typeof import('./src/components/TextLink.vue')['default']
   }

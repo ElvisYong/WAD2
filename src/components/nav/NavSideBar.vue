@@ -97,7 +97,7 @@ const gotoCollectionPage = (collection) => {
           <input type="checkbox" id="popupmodal" class="modal-toggle" />
           <label for="popupmodal" class="modal cursor-pointer">
             <label class="relative" for="">
-              <SearchBar />
+              <GeneralSearchBar />
             </label>
           </label>
           <!--avatar-->
@@ -113,11 +113,11 @@ const gotoCollectionPage = (collection) => {
 
     <div class="drawer-side">
       <label for="nav-drawer" class="drawer-overlay"></label>
-      <ul class="flex menu p-8 overflow-y-auto w-1/2 sm:w-1/4 lg:w-full bg-base-200 text-base-content">
+      <ul class="flex menu p-6 overflow-y-auto w-40 lg:w-60 bg-base-200 text-base-content">
         <!-- Sidebar content here -->
-        <div class="flex flex-col mt-3 text-center">
+        <div class="flex flex-col mt-3 w-full text-center">
 
-          <div class="w-3/4 self-center @click:">
+          <div class="self-center @click:">
             <a href="/">
               <img src="/logo.png" />
             </a>
@@ -158,10 +158,6 @@ const gotoCollectionPage = (collection) => {
               :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
               <a href="/my-kitchen">My Kitchen</a>
             </div>
-            <div class="mt-3"
-              :class="currentRouteName === 'CookingWishlist' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/wishlist">Cooking Wishlist</a>
-            </div>
           </div>
 
           <div v-if="isAuthenticated" class="mt-5">
@@ -183,7 +179,7 @@ const gotoCollectionPage = (collection) => {
                 </label>
               </div>
 
-              <div class="mt-1 max-h-56 overflow-y-scroll">
+              <div class="mt-1 max-h-56 overflow-y-auto">
                 <div v-for="collection in userCollections">
                   <TextLink @click="gotoCollectionPage(collection)">
                     <div class="flex">
