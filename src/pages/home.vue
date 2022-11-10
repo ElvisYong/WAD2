@@ -6,30 +6,26 @@ useHead({
   title: "Home",
 });
 
-const el = ref(null);
 const randomRecipes = ref(null);
 
 const fetchGetRandomRecommendations = async (number) => {
   try {
     const response = await getRandomRecommendations(false, "meat,lunch", number)
-    randomRecipes.value = response.data.value.recipes
+    return response.data.value.recipes
   } catch (error) {
     console.log(error)
   }
 }
 
 onMounted(async () => {
-  await fetchGetRandomRecommendations(10)
+  randomRecipes.value = await fetchGetRandomRecommendations(10)
 })
 
-useInfiniteScroll(el, async () => {
-  const response = await fetchGetRandomRecommendations(10);
-  // randomRecipes without dups from response
-  const dataWithPotentialDups = [...randomRecipes.value, ...response.data.value.recipes]
-  const dataWithoutDups = [...new Set(dataWithPotentialDups)]
-
-  randomRecipes.value = dataWithoutDups;
-}, { distance: 10 })
+const loadMoreData = async () => {
+  const recipes = await fetchGetRandomRecommendations(10);
+  const filteredData = recipes.filter(recipe => !randomRecipes.value.includes(recipe))
+  randomRecipes.value.push(...filteredData)
+}
 
 
 </script>
@@ -52,7 +48,7 @@ useInfiniteScroll(el, async () => {
       <Loader />
     </div>
     <div ref="el" v-else>
-      <RecipesGrid :recipes="randomRecipes" />
+      <RecipesGrid @load-more="loadMoreData" :recipes="randomRecipes" />
     </div>
   </div>
 </template>

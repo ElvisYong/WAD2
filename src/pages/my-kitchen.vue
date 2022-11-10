@@ -19,7 +19,7 @@ const removeIngredient = (index) => {
 }
 
 const findRecipesByIngredients = async () => {
-    const res = await getRecipesByIngredients(selectedIngredients.value, 1);
+    const res = await getRecipesByIngredients(selectedIngredients.value, 50);
     recipes.value = res.data.value
 }
 
