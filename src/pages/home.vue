@@ -50,27 +50,30 @@ useInfiniteScroll(el, async () => {
       <div class="hero-content text-center">
         <div class="max-w-md">
           <h1 v-if="!isAuthenticated" class="text-5xl font-bold">Hello!</h1>
-          <h1 v-else class="text-5xl font-bold">Welcome Back!</h1>
+          <h1 v-else class="text-5xl font-bold bg-[]">Welcome Back!</h1>
           <p class="py-6">What would you like to explore today?</p>
-          <button class="btn btn-primary mr-2 lg:text-center"><a href="#recipes">Browse Recipes</a></button>
-          <button class="btn btn-primary ml-2 hidden lg:inline-block"><a href="#search">Search Recipes</a></button>
+          <!-- <button class="btn btn-primary mr-2 lg:text-center"><a href="#recipes">Browse Recipes</a></button>
+          <button class="btn btn-primary ml-2 hidden lg:inline-block"><a href="#search">Search Recipes</a></button> -->
+          <a href="#search" class="text-[#d58d00] no-underline hover:underline">Search Recipes</a><span class="text-[#d58d00] mr-3"> ></span>
+          <a href="#recipes" class="text-[#d58d00] ml-3 no-underline hover:underline">Browse Recipes</a><span class="text-[#d58d00]"> ></span>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="hero min-h-screen bg-light" id="search">
+    <div class="hero min-h-screen bg-[url('grainy_food.png')]" id="search" >
       <div class="hero-content text-center">
         <div class="max-w-md">
           <h1 v-if="!isAuthenticated" class="text-5xl font-bold">Hello!</h1>
-          <h1 v-else class="text-5xl font-bold">Recipe Search</h1>
-          <p class="py-6">What's cooking?</p>
+          <h1 v-else class="text-5xl font-bold text-white">Recipe Search</h1>
+          <p class="py-6 text-white">What's cooking?</p>
           <div class="hidden mx-auto lg:flex">
             <GeneralSearchBar/>
           </div>
         </div>
       </div>
     </div>
-
+    <div class="mx-auto">
     <!-- <div class="hidden mx-auto mt-6 lg:flex">
       <GeneralSearchBar id="search"/>
     </div> -->
