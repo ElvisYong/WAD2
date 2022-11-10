@@ -44,7 +44,7 @@ useInfiniteScroll(el, async () => {
 }
 </route>
 
-<template>
+<template class="scroll-behaviour-[smooth]"> <!--idk why the scroll not working >:()-->
   <div class="mx-auto">
     <div class="hero min-h-screen bg-light">
       <div class="hero-content text-center">
@@ -54,12 +54,11 @@ useInfiniteScroll(el, async () => {
           <p class="py-6">What would you like to explore today?</p>
           <button class="btn btn-primary mr-2 lg:text-center"><a href="#recipes">Browse Recipes</a></button>
           <button class="btn btn-primary ml-2 hidden lg:inline-block"><a href="#search">Search Recipes</a></button>
-          <!-- <button class="btn btn-primary">Get Started</button> -->
         </div>
       </div>
     </div>
 
-    <div class="hero min-h-screen bg-light" id="search" style="background-image:url('src\food.jpg')">
+    <div class="hero min-h-screen bg-light" id="search">
       <div class="hero-content text-center">
         <div class="max-w-md">
           <h1 v-if="!isAuthenticated" class="text-5xl font-bold">Hello!</h1>
@@ -75,16 +74,13 @@ useInfiniteScroll(el, async () => {
     <!-- <div class="hidden mx-auto mt-6 lg:flex">
       <GeneralSearchBar id="search"/>
     </div> -->
-    <!-- <div v-if="!isAuthenticated">
-      <h1>Sign Up to find out more!</h1>
-    </div> -->
-    <div>
-      <div v-if="randomRecipes === null" class="mt-3">
-        <Loader />
-      </div>
-      <div ref="el" id="recipes" class="mt-3" v-else>
-        <RecipesGrid :recipes="randomRecipes" />
-      </div>
+    <div id="recipes">
+    <div v-if="randomRecipes === null" class="mt-3">
+      <Loader />
     </div>
+    <div ref="el" v-else>
+      <RecipesGrid :recipes="randomRecipes" />
+    </div>
+  </div>
   </div>
 </template>
