@@ -174,13 +174,13 @@ const gotoCollectionPage = (collection) => {
               </div>
               <div v-else class="flex mt-3">
                 <label class="flex">
-                  <input @keyup.enter="addNewCollection" @blur="showAddCollectionInput = false" type="text" placeholder="Collection Name"
-                    class="input input-xs p-0" autofocus />
+                  <input @keyup.enter="addNewCollection" @blur="showAddCollectionInput = false" type="text"
+                    placeholder="Collection Name" class="input input-xs w-32 p-0" autofocus />
                   <XMarkIcon @click="showAddCollectionInput = false" class="w-5 hover:cursor-pointer" />
                 </label>
               </div>
 
-              <div class="mt-1 max-h-56 overflow-y-auto">
+              <div class="ml-2 mt-1 max-h-56 overflow-y-auto">
                 <div v-for="collection in userCollections">
                   <TextLink @click="gotoCollectionPage(collection)">
                     <div class="flex">
@@ -190,6 +190,7 @@ const gotoCollectionPage = (collection) => {
                   </TextLink>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
