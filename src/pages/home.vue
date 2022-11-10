@@ -45,7 +45,7 @@ const loadMoreData = async () => {
     <div class="hero min-h-screen bg-light">
       <div class="hero-content text-center">
         <div class="max-w-md">
-          <h1 v-if="!isAuthenticated" class="text-5xl font-bold">Hello!</h1>
+          <h1 v-if="!isAuthenticated" class="text-5xl font-bold ">Hello!</h1>
           <h1 v-else class="text-5xl font-bold bg-[]">Welcome Back!</h1>
           <p class="py-6">What would you like to explore today?</p>
           <!-- <button class="btn btn-primary mr-2 lg:text-center"><a href="#recipes">Browse Recipes</a></button>
@@ -60,8 +60,8 @@ const loadMoreData = async () => {
     <div class="hero min-h-screen bg-[url('grainy_food.png')]" id="search" >
       <div class="hero-content text-center">
         <div class="max-w-md">
-          <h1 v-if="!isAuthenticated" class="text-5xl font-bold">Hello!</h1>
-          <h1 v-else class="text-5xl font-bold text-white">Recipe Search</h1>
+          <!-- <h1 v-if="!isAuthenticated" class="text-5xl font-bold text-white">Hello!</h1> -->
+          <h1 class="text-5xl font-bold text-white">Recipe Search</h1>
           <p class="py-6 text-white">What's cooking?</p>
           <div class="hidden mx-auto lg:flex">
             <GeneralSearchBar/>
