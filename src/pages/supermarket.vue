@@ -19,6 +19,12 @@ const fetchNearbySuperMarket = async () => {
   // Clear the array first
   markers.value.splice(0, markers.value.length)
 
+  markers.value.push({
+    position: {
+      lat: lat,
+      lng: lng
+    },
+  })
 
   for (const supermarket of nearbySupermarkets) {
     markers.value.push({
