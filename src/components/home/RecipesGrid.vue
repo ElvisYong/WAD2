@@ -7,6 +7,8 @@ const router = useRouter()
 const props = defineProps(["recipes"])
 const emits = defineEmits(["load-more"])
 const randomRecipes = ref(props.recipes)
+const diets = ref(props.recipes.diets)
+
 const el = ref(null);
 const { height } = useWindowSize();
 
@@ -36,7 +38,8 @@ useInfiniteScroll(containerProps.ref, () => {
       <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:gap-10">
         <div v-for="recipe in randomRecipes" class="text-center mt-0 mb-5">
-          <CardItem @click="gotoRecipeInfo(recipe)" :title="recipe.title" :image="recipe.image" />
+          <CardItem @click="gotoRecipeInfo(recipe)" :title="recipe.title" :image="recipe.image"
+            :cuisines="recipe.cuisines" :diets="recipe.diets" />
         </div>
       </div>
     </div>
