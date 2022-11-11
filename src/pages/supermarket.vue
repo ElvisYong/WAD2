@@ -66,7 +66,7 @@ watch(vicinity, async () => {
 
 <template>
   <div class="mt-10 container flex flex-col mx-32">
-    <h1 class="text-2xl font-bold">Nearby supermarkets within your vicinity!</h1>
+    <h1 class="text-2xl font-bold">Nearby Supermarkets Within Your Vicinity!</h1>
 
     <div>
       <div class="form-control w-full max-w-xs">
