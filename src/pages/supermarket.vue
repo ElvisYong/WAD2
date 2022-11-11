@@ -66,12 +66,12 @@ watch(vicinity, async () => {
 
 <template>
   <div class="mt-10 container flex flex-col mx-32">
-    <h1 class="text-2xl font-bold">Nearby Supermarkets Within Your Vicinity!</h1>
+    <h1 class="text-2xl font-bold">Missing Ingredients? Look no further!</h1>
 
     <div>
       <div class="form-control w-full max-w-xs">
         <label class="label">
-          <span class="label-text">Search supermarket keywords</span>
+          <span class="label-text">Search supermarket</span>
         </label>
         <input type="text" v-model="keyword" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
         <label class="label">
