@@ -98,7 +98,7 @@ watch(vicinity, async () => {
           @click="center = m.position">
           <div v-if="currentPos.lat === m.position.lat && currentPos.lng === m.position.lng">
             <GMapInfoWindow>
-              <span class="font-bold">You are here!</span>
+              <span class="font-bold text-red-600">You are here!</span>
             </GMapInfoWindow>
           </div>
 
