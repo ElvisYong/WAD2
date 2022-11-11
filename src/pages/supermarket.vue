@@ -56,10 +56,6 @@ watch(vicinity, async () => {
   await fetchNearbySuperMarket();
 })
 
-const setPlace = (event) => {
-  console.log(event)
-}
-
 </script>
 
 <template>
@@ -70,7 +66,8 @@ const setPlace = (event) => {
       <div class="flex flex-col">
         <h2 class="font-bold">Search supermarket</h2>
         <div>
-          <input type="text" class="input input-bordered input-primary w-80 mt-1" placeholder="Enter a keyword" />
+          <input v-model="keyword" type="text" class="input input-bordered input-primary w-80 mt-1"
+            placeholder="Enter a keyword" />
           <button class="btn btn-primary ml-3">GO</button>
         </div>
       </div>
