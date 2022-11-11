@@ -23,6 +23,11 @@ const routes: RouteRecordRaw[] = [
     name: "Collection",
     component: () => import("./pages/collections.vue"),
   },
+  {
+    path: "/supermarket",
+    name: "Supermarket",
+    component: () => import("./pages/supermarket.vue"),
+  },
 ];
 
 const router = createRouter({
