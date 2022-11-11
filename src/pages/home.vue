@@ -68,17 +68,34 @@ const loadMoreData = async () => {
         </div>
       </div>
     </div>
-    <div class="mx-auto">
+
+    <div class="hero min-h-screen bg-light">
+      <div class="hero-content text-center">
+        <div class="mx-auto">
+          <div id="recipes">
+            <div v-if="randomRecipes === null" class="mt-3">
+              <Loader />
+            </div>
+            <div ref="el" v-else>
+              <RecipesGrid @load-more="loadMoreData" :recipes="randomRecipes" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
     <!-- <div class="hidden mx-auto mt-6 lg:flex">
       <GeneralSearchBar id="search"/>
     </div> -->
+    <!-- <div class="mx-auto">
     <div id="recipes">
-    <div v-if="randomRecipes === null" class="mt-3">
-      <Loader />
+      <div v-if="randomRecipes === null" class="mt-3">
+        <Loader />
+      </div>
+      <div ref="el" v-else>
+        <RecipesGrid @load-more="loadMoreData" :recipes="randomRecipes" />
+      </div>
     </div>
-    <div ref="el" v-else>
-      <RecipesGrid @load-more="loadMoreData" :recipes="randomRecipes" />
-    </div>
-  </div>
-  </div>
+  </div> -->
 </template>
