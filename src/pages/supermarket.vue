@@ -50,28 +50,28 @@ const setPlace = (event) => {
 </script>
 
 <template>
-  <GMapAutocomplete placeholder="Search places" @place_changed="setPlace">
-  </GMapAutocomplete>
+  <div class="mt-10">
+    <h1 class="text-2xl font-bold">Nearby supermarkets within your vicinity!</h1>
+    <div v-if="latitude !== null && longitude !== null && markers.length > 0">
+      <GMapMap :center="center" :zoom="16" map-type-id="terrain" style="width: 100vw; height: 900px">
+        <GMapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true"
+          @click="center = m.position">
+          <div v-if="currentPos.lat === m.position.lat && currentPos.lng === m.position.lng">
+            <GMapInfoWindow>
+              <span class="font-bold">You are here!</span>
+            </GMapInfoWindow>
+          </div>
 
-  <div v-if="latitude !== null && longitude !== null && markers.length > 0">
-    <GMapMap :center="center" :zoom="16" map-type-id="terrain" style="width: 100vw; height: 900px">
-      <GMapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true"
-        @click="center = m.position">
-        <div v-if="currentPos.lat === m.position.lat && currentPos.lng === m.position.lng">
-          <GMapInfoWindow>
-            <span class="font-bold">You are here!</span>
-          </GMapInfoWindow>
-        </div>
-
-        <div v-else>
-          <GMapInfoWindow>
-            <div class="flex flex-col">
-              <span class="font-bold">{{ m.name }}</span>
-              <span>{{ m.vicinity }}</span>
-            </div>
-          </GMapInfoWindow>
-        </div>
-      </GMapMarker>
-    </GMapMap>
+          <div v-else>
+            <GMapInfoWindow>
+              <div class="flex flex-col">
+                <span class="font-bold">{{ m.name }}</span>
+                <span>{{ m.vicinity }}</span>
+              </div>
+            </GMapInfoWindow>
+          </div>
+        </GMapMarker>
+      </GMapMap>
+    </div>
   </div>
 </template>
