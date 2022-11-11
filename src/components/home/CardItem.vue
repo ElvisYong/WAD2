@@ -2,10 +2,12 @@
 import { useRouter } from 'vue-router'
 import { defineProps, ref } from 'vue';
 
-const props = defineProps(['title', 'image', 'tags'])
+const props = defineProps(['title', 'image', 'tags', 'diets', 'cuisines'])
 const title = ref(props.title)
 const image = ref(props.image)
 const tags = ref(props.tags)
+const diets = ref(props.diets)
+const cuisines = ref(props.cuisines)
 
 </script>
 
@@ -18,8 +20,12 @@ const tags = ref(props.tags)
         </div>
         <div
           class="opacity-0 hover:opacity-60 absolute inset-0 flex justify-center text-sm text-white py-2 bg-black items-center">
-          <!-- {{ recipe.extendedIngredients[0].name }} -->
-          test
+          <div v-for="cuisine in cuisines">
+            {{ cuisine }}
+          </div>
+          <div v-for="diet in diets">
+            {{ diet }}
+          </div>
         </div>
       </div>
     </div>

@@ -53,7 +53,7 @@ let filteredIngredients = computed(() => {
       <div class="relative mt-1">
         <div
           class="flex w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-          <ComboboxButton class="inset-y-0 left-0 flex items-center pl-2">
+          <ComboboxButton class="inset-y-0 left-0 flex items-center pl-2" >
             <MagnifyingGlassIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
           </ComboboxButton>
           <ComboboxInput class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
@@ -63,7 +63,7 @@ let filteredIngredients = computed(() => {
         <TransitionRoot leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0"
           @after-leave="searchTerm = ''">
           <ComboboxOptions
-            class="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            class="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" placeholder="Simply key in your ingredients here">
             <div v-if="ingredients.length === 0 && searchTerm !== ''"
               class="relative cursor-default select-none py-2 px-4 text-gray-700">
               Nothing found.
