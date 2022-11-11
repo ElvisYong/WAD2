@@ -9,7 +9,7 @@ const latitude = ref(null)
 const longitude = ref(null)
 const markers = ref([])
 const keyword = ref("Supermarket")
-const vicinity = ref(1000)
+const vicinity = ref(100)
 
 const fetchNearbySuperMarket = async () => {
   const { lat, lng } = center.value
@@ -86,9 +86,9 @@ watch(vicinity, async () => {
 
       <div class="flex gap-2 mt-3">
         <h2>Nearby vicinity range</h2>
-        <button class="btn btn-primary btn-sm" @click="vicinity = 1000">1000m</button>
-        <button class="btn btn-primary btn-sm" @click="vicinity = 3000">3000m</button>
-        <button class="btn btn-primary btn-sm" @click="vicinity = 5000">5000m</button>
+        <button class="btn btn-primary btn-sm" @click="vicinity = 100">100m</button>
+        <button class="btn btn-primary btn-sm" @click="vicinity = 500">500m</button>
+        <button class="btn btn-primary btn-sm" @click="vicinity = 1000">1km</button>
       </div>
     </div>
 
@@ -98,7 +98,7 @@ watch(vicinity, async () => {
           @click="center = m.position">
           <div v-if="currentPos.lat === m.position.lat && currentPos.lng === m.position.lng">
             <GMapInfoWindow>
-              <span class="font-bold text-red-600">You are here!</span>
+              <span class="font-bold">You are here!</span>
             </GMapInfoWindow>
           </div>
 
