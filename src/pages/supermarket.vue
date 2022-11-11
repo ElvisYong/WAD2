@@ -59,18 +59,24 @@ watch(vicinity, async () => {
 </script>
 
 <template>
-  <div class="mt-10">
+  <div class="mt-10 container flex flex-col mx-32">
     <h1 class="text-2xl font-bold">Nearby supermarkets within your vicinity!</h1>
 
-    <div class="flex flex-col my-3">
-      <div class="flex flex-col">
-        <h2 class="font-bold">Search supermarket</h2>
-        <div>
-          <input v-model="keyword" type="text" class="input input-bordered input-primary w-80 mt-1"
-            placeholder="Enter a keyword" />
-          <button class="btn btn-primary ml-3">GO</button>
-        </div>
+    <div>
+      <div class="form-control w-full max-w-xs">
+        <label class="label">
+          <span class="label-text">Search supermarket keywords</span>
+        </label>
+        <input type="text" v-model="keyword" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+        <label class="label">
+          <span class="label-text-alt"></span>
+          <span class="label-text-alt">e.g ntuc</span>
+        </label>
       </div>
+      <button class="btn btn-primary btn-sm" @click="fetchNearbySuperMarket">Search</button>
+    </div>
+
+    <div class="flex flex-col my-3">
 
       <div class="flex gap-2 mt-3">
         <h2>Nearby vicinity range</h2>
@@ -81,7 +87,7 @@ watch(vicinity, async () => {
     </div>
 
     <div v-if="latitude !== null && longitude !== null && markers.length > 0">
-      <GMapMap :center="center" :zoom="16" map-type-id="terrain" style="width: 100vw; height: 900px">
+      <GMapMap :center="center" :zoom="16" map-type-id="terrain" style="width: 100vh; height: 100vh;">
         <GMapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true"
           @click="center = m.position">
           <div v-if="currentPos.lat === m.position.lat && currentPos.lng === m.position.lng">
@@ -101,5 +107,6 @@ watch(vicinity, async () => {
         </GMapMarker>
       </GMapMap>
     </div>
+
   </div>
 </template>
