@@ -44,11 +44,11 @@ onMounted(async () => {
     </div>
     <div v-else>
       <div v-if="recipes.length === 0">
-        <h1 class="mt-5">Oh no you have no recipes added</h1>
+        <h1 class="mt-5">Oops! There are no recipes added.</h1>
       </div>
       <div v-else>
         <RecipesGrid :recipes="recipes">
-          {{collectionName}}
+          {{collectionName}} <!--Insert Collection Name Here -->
         </RecipesGrid>
       </div>
     </div>

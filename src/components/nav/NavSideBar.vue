@@ -161,7 +161,7 @@ const gotoCollectionPage = (collection) => {
             </div>
             <div class="mt-3"
               :class="currentRouteName === 'Supermarket' ? 'border-l-2 border-primary active' : 'text-gray-600'">
-              <a href="/supermarket">supermarket</a>
+              <a href="/supermarket">Supermarket</a>
             </div>
           </div>
 
