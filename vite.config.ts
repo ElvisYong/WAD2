@@ -19,4 +19,10 @@ export default defineConfig({
     open: true,
     port: 5173
   },
+  optimizeDeps: {
+      // fast-deep-equal doesnt have default export
+      // https://github.com/vitejs/vite/issues/2679
+      include: ['fast-deep-equal'],
+      exclude: [],
+    },
 })
