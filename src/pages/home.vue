@@ -25,7 +25,7 @@ onMounted(async () => {
   if (isAuthenticated && user.value) {
     greetings.value = `Welcome Back ${user.value.name}!`
   }
-  randomRecipes.value = await fetchGetRandomRecommendations(10)
+  randomRecipes.value = await fetchGetRandomRecommendations(30)
 })
 
 watch(user, async () => {
@@ -70,21 +70,38 @@ const loadMoreData = async () => {
     </div>
   </div>
 
-  <div class="hero min-h-screen bg-[url('grainy_food.png')]" id="search">
-    <div class="hero-content text-center">
-      <div class="max-w-md">
-        <h1 class="text-5xl font-bold text-white">Recipe Search</h1>
-        <p class="py-6 text-white">What's cooking?</p>
-        <div class="hidden mx-auto lg:flex">
-          <GeneralSearchBar />
+    <div class="hero min-h-screen bg-[url('otherfood.png')]" id="search" >
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold text-white">Recipe Search</h1>
+          <p class="py-6 text-white">What's cooking?</p>
+          <div class="hidden mx-auto lg:flex">
+            <GeneralSearchBar/>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="mx-auto">
+
+    <div class="hero min-h-screen bg-light">
+      <div class="hero-content text-center">
+        <div class="mx-auto">
+          <div id="recipes">
+            <div v-if="randomRecipes === null" class="mt-3">
+              <Loader />
+            </div>
+            <div ref="el" v-else>
+              <RecipesGrid @load-more="loadMoreData" :recipes="randomRecipes" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
     <!-- <div class="hidden mx-auto mt-6 lg:flex">
       <GeneralSearchBar id="search"/>
     </div> -->
+    <!-- <div class="mx-auto">
     <div id="recipes">
       <div v-if="randomRecipes === null" class="mt-3">
         <Loader />
@@ -93,5 +110,5 @@ const loadMoreData = async () => {
         <RecipesGrid @load-more="loadMoreData" :recipes="randomRecipes" />
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
