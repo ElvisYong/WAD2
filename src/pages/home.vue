@@ -25,7 +25,7 @@ onMounted(async () => {
   if (isAuthenticated && user.value) {
     greetings.value = `Welcome Back ${user.value.name}!`
   }
-  randomRecipes.value = await fetchGetRandomRecommendations(10)
+  randomRecipes.value = await fetchGetRandomRecommendations(30)
 })
 
 watch(user, async () => {
