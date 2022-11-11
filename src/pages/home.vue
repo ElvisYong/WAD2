@@ -69,6 +69,17 @@ const loadMoreData = async () => {
       </div>
     </div>
   </div>
+  <!--THIS IS FOR THE SUPERMARKET PAGE-->
+  <!-- <div class="hero min-h-screen bg-light" id="" >
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold text-black">Missing Ingredients?</h1>
+          <p class="py-6 text-black">Look no further!</p>
+          <a href="#gps" class="text-[#d58d00] ml-3 no-underline hover:underline">Check out the nearest supermarket from you</a><span
+            class="text-[#d58d00]"> ></span>
+        </div>
+      </div>
+    </div> -->
 
     <div class="hero min-h-screen bg-[url('otherfood.png')]" id="search" >
       <div class="hero-content text-center">
@@ -99,18 +110,4 @@ const loadMoreData = async () => {
       </div>
     </div>
 
-    
-    <!-- <div class="hidden mx-auto mt-6 lg:flex">
-      <GeneralSearchBar id="search"/>
-    </div> -->
-    <!-- <div class="mx-auto">
-    <div id="recipes">
-      <div v-if="randomRecipes === null" class="mt-3">
-        <Loader />
-      </div>
-      <div ref="el" v-else>
-        <RecipesGrid @load-more="loadMoreData" :recipes="randomRecipes" />
-      </div>
-    </div>
-  </div> -->
 </template>
