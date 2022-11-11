@@ -113,7 +113,8 @@ const gotoCollectionPage = (collection) => {
 
     <div class="drawer-side">
       <label for="nav-drawer" class="drawer-overlay"></label>
-      <ul class="flex menu p-6 overflow-y-auto w-40 lg:w-60 bg-base-200 text-base-content">
+      <ul class="flex menu p-6 overflow-y-auto w-40 lg:w-60 bg-[#FFF9D8] text-base-content">
+      <!-- <ul class="flex menu p-6 overflow-y-auto w-40 lg:w-48 bg-base-200 text-base-content"> -->
         <!-- Sidebar content here -->
         <div class="flex flex-col mt-3 w-full text-center">
 
@@ -125,11 +126,11 @@ const gotoCollectionPage = (collection) => {
           </div>
 
           <!-- List of pages -->
-          <div class="mt-3">
-            <div v-if="isAuthenticated" class="flex">
+          <div class="mt-6">
+            <div v-if="isAuthenticated" class="flex flex-col">
               <div v-if="getProfileImage() !== ''">
                 <div class="avatar center">
-                  <div class="rounded-full w-8">
+                  <div class="rounded-full w-12">
                     <img :src="getProfileImage()" alt="" />
                   </div>
                 </div>
@@ -141,7 +142,7 @@ const gotoCollectionPage = (collection) => {
                   </div>
                 </div>
               </div>
-              <a class="ml-3 self-center">{{ user.name }}</a>
+              <a class=" self-center">{{ user.name }}</a>
             </div>
 
             <div v-else>
@@ -168,22 +169,23 @@ const gotoCollectionPage = (collection) => {
             <div class="mt-5">
               <h1 class="font-bold">Saved recipes</h1>
               <div v-if="!showAddCollectionInput">
-                <button @click="() => { showAddCollectionInput = true }"
-                  class="flex mt-3 text-primary hover:text-orange-400">
-                  <PlusIcon class="w-5" />
-                  Add Collection
-                </button>
+                <div class="flex justify-center">
+                  <button @click="() => { showAddCollectionInput = true }"
+                    class="flex mt-3 text-primary hover:text-orange-400">
+                    <PlusIcon class="w-5" />
+                    Add Collection
+                  </button>
+                </div>
               </div>
               <div v-else class="flex mt-3">
-                <!-- TODO: Fix the extending of navbar when this comes out -->
                 <label class="flex">
-                  <input @keyup.enter="addNewCollection" type="text" placeholder="Collection Name"
-                    class="input input-xs p-0" autofocus />
+                  <input @keyup.enter="addNewCollection" @blur="showAddCollectionInput = false" type="text"
+                    placeholder="Collection Name" class="input input-xs w-32 p-0" autofocus />
                   <XMarkIcon @click="showAddCollectionInput = false" class="w-5 hover:cursor-pointer" />
                 </label>
               </div>
 
-              <div class="mt-1 max-h-56 overflow-y-auto">
+              <div class="ml-2 mt-1 max-h-56 overflow-y-auto">
                 <div v-for="collection in userCollections">
                   <TextLink @click="gotoCollectionPage(collection)">
                     <div class="flex">
@@ -193,6 +195,7 @@ const gotoCollectionPage = (collection) => {
                   </TextLink>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
