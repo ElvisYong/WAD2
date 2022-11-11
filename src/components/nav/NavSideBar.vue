@@ -158,6 +158,10 @@ const gotoCollectionPage = (collection) => {
               :class="currentRouteName === 'MyKitchen' ? 'border-l-2 border-primary active' : 'text-gray-600'">
               <a href="/my-kitchen">My Kitchen</a>
             </div>
+            <div class="mt-3"
+              :class="currentRouteName === 'Supermarket' ? 'border-l-2 border-primary active' : 'text-gray-600'">
+              <a href="/supermarket">Supermarket</a>
+            </div>
           </div>
 
           <div v-if="isAuthenticated" class="mt-5">
