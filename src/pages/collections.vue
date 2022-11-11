@@ -47,7 +47,9 @@ onMounted(async () => {
         <h1 class="mt-5">Oh no you have no recipes added</h1>
       </div>
       <div v-else>
-        <RecipesGrid :recipes="recipes" />
+        <RecipesGrid :recipes="recipes">
+          {{collectionName}}
+        </RecipesGrid>
       </div>
     </div>
   </div>

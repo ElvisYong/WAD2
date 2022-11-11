@@ -108,7 +108,9 @@ const findRecipesByIngredients = async () => {
         <div class="hero-content text-center">
             <div class="mx-auto" id="SRecipes">
                 <div v-if="recipes && recipes.length > 0" class="mt-6">
-                    <RecipesGrid :recipes="recipes" />
+                    <RecipesGrid :recipes="recipes">
+                        <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1>
+                    </RecipesGrid>
                 </div>
         </div>
         </div>
