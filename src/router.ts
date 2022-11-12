@@ -28,6 +28,11 @@ const routes: RouteRecordRaw[] = [
     name: "Supermarket",
     component: () => import("./pages/supermarket.vue"),
   },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: () => import("./pages/profile.vue"),
+  },
 ];
 
 const router = createRouter({

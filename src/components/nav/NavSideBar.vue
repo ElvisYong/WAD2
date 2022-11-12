@@ -131,7 +131,9 @@ const gotoCollectionPage = (collection) => {
               <div v-if="getProfileImage() !== ''">
                 <div class="avatar center">
                   <div class="rounded-full w-12">
-                    <img :src="getProfileImage()" alt="" />
+                    <a href="/profile">
+                      <img :src="getProfileImage()" alt="" />
+                    </a> 
                   </div>
                 </div>
               </div>
@@ -142,7 +144,7 @@ const gotoCollectionPage = (collection) => {
                   </div>
                 </div>
               </div>
-              <a class=" self-center">{{ user.name }}</a>
+              <a class=" self-center" href="/profile">{{ user.name }}</a>
             </div>
 
             <div v-else>
