@@ -56,7 +56,7 @@ let filteredIngredients = computed(() => {
           <ComboboxButton class="inset-y-0 left-0 flex items-center pl-2" >
             <MagnifyingGlassIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
           </ComboboxButton>
-          <ComboboxInput class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+          <ComboboxInput class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0" placeholder="Key in Your Ingredients Here"
             :displayValue="(recipe) => recipe && recipe.value" @change="searchTerm = $event.target.value" />
         </div>
 

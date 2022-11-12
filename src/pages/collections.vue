@@ -42,7 +42,7 @@ const onDeleteClick = async () => {
   const res = await deleteUserCollection(route.params.userId, route.params.name)
   if (res.statusCode.value === 200) {
     toast.success("Collection deleted")
-    document.location.href = "/";
+    document.location.href="/";
 
   } else {
     toast.error("Failed to delete collection")
@@ -59,21 +59,19 @@ const onDeleteClick = async () => {
     <div class="flex">
       <div class="hero h-56" style="background-image: url(/grainy_food.png);">
         <div class="hero-overlay bg-opacity-60"></div>
-        <div class="hero-content text-center text-neutral-content flex">
+        <div class="hero-content text-center text-neutral-content flex ">
           <div class="max-w-md">
             <h1 class="mb-5 text-5xl font-bold">{{ route.params.name }}</h1>
-            <span class="flex">
-              <p>{{ recipes.length }} Recipes
-              </p>
-
-              <label for="delete-modal">
-                <TrashIcon @click="" class="ml-2 h5 w-5" />
+            <span class="flex justify-center">
+              <p>{{ recipes.length }} Recipes</p>
+              <label for="delete-modal" class="hover:cursor-pointer">
+                <TrashIcon class="ml-2 h5 w-5" />
               </label>
             </span>
           </div>
         </div>
-
       </div>
+
     </div>
     <div class="flex">
       <div class="mx-auto">
@@ -81,13 +79,10 @@ const onDeleteClick = async () => {
           <Loader />
         </div>
         <div v-if="recipes.length === 0">
-          <h1 class="mt-5">Oh no you have no recipes added</h1>
+          <h1 class="mt-5">Oops! You have no recipes added</h1>
         </div>
         <div v-else>
-          <RecipesGrid :recipes="recipes">
-            {{ collectionName }}
-            <!--Insert Collection Name Here -->
-          </RecipesGrid>
+          <RecipesGrid :recipes="recipes" />
         </div>
       </div>
     </div>
@@ -100,6 +95,7 @@ const onDeleteClick = async () => {
       <h3 class="font-bold text-lg">Are you sure you want to delete this collection?</h3>
       <p class="py-4">You cannot revert this process</p>
       <div class="modal-action">
+        <label for="delete-modal" class="btn btn-primary">Cancel</label>
         <label for="delete-modal" class="btn btn-error" @click="() => onDeleteClick()">Delete</label>
       </div>
     </div>

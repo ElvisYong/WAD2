@@ -93,12 +93,12 @@ watch(vicinity, async () => {
     </div>
 
     <div v-if="currentPos.lng !== null && currentPos.lat !== null && markers.length > 0">
-      <GMapMap :center="center" :zoom="16" map-type-id="terrain" style="width: 100vh; height: 80vh;">
+      <GMapMap :center="center" :zoom="18" map-type-id="terrain" style="width: 100vh; height: 80vh;">
         <GMapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true"
           @click="center = m.position">
           <div v-if="currentPos.lat === m.position.lat && currentPos.lng === m.position.lng">
             <GMapInfoWindow>
-              <span class="font-bold">You are here!</span>
+              <span class="font-bold text-primary">You are here!</span>
             </GMapInfoWindow>
           </div>
 
