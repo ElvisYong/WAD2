@@ -114,7 +114,7 @@ const gotoCollectionPage = (collection) => {
     <div class="drawer-side">
       <label for="nav-drawer" class="drawer-overlay"></label>
       <ul class="flex menu p-6 overflow-y-auto w-40 lg:w-60 bg-[#FFF9D8] text-base-content">
-      <!-- <ul class="flex menu p-6 overflow-y-auto w-40 lg:w-48 bg-base-200 text-base-content"> -->
+        <!-- <ul class="flex menu p-6 overflow-y-auto w-40 lg:w-48 bg-base-200 text-base-content"> -->
         <!-- Sidebar content here -->
         <div class="flex flex-col mt-3 w-full text-center">
 
@@ -188,8 +188,10 @@ const gotoCollectionPage = (collection) => {
               <div class="ml-2 mt-1 max-h-56 overflow-y-auto">
                 <div v-for="collection in userCollections">
                   <TextLink @click="gotoCollectionPage(collection)">
-                    <div class="flex">
-                      <FolderIcon class="w-5 mr-1" />
+                    <div class="flex text-left">
+                      <div class="align-top">
+                        <FolderIcon class="w-5 mr-1" />
+                      </div>
                       {{ collection.collectionName }}
                     </div>
                   </TextLink>
