@@ -61,8 +61,10 @@ const loadMoreData = async () => {
           <p class="py-6">What would you like to explore today?</p>
           <!-- <button class="btn btn-primary mr-2 lg:text-center"><a href="#recipes">Browse Recipes</a></button>
           <button class="btn btn-primary ml-2 hidden lg:inline-block"><a href="#search">Search Recipes</a></button> -->
-          <a href="#search" class="text-[#d58d00] no-underline hover:underline">Search Recipes</a><span
-            class="text-[#d58d00] mr-3"> ></span>
+          <div class="hidden lg:inline-block">
+            <a href="#search" class="text-[#d58d00] no-underline hover:underline">Search Recipes</a><span
+              class="text-[#d58d00] mr-3"> ></span>
+          </div>
           <a href="#recipes" class="text-[#d58d00] ml-3 no-underline hover:underline">Browse Recipes</a><span
             class="text-[#d58d00]"> ></span>
         </div>
@@ -80,14 +82,15 @@ const loadMoreData = async () => {
         </div>
       </div>
     </div> -->
-
-    <div class="hero min-h-screen bg-[url('/otherfood.png')]" id="search" >
-      <div class="hero-content text-center">
-        <div class="max-w-md">
-          <h1 class="text-5xl font-bold text-white">Recipe Search</h1>
-          <p class="py-6 text-white">What's cooking?</p>
-          <div class="hidden mx-auto lg:flex">
-            <GeneralSearchBar/>
+    <div class="hidden lg:block">
+      <div class="hero min-h-screen bg-[url('/otherfood.png')]" id="search" >
+        <div class="hero-content text-center content-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold text-white">Recipe Search</h1>
+            <p class="py-6 text-white">What's cooking?</p>
+            <div class="hidden mx-auto lg:flex sticky top-0">
+              <GeneralSearchBar/>
+            </div>
           </div>
         </div>
       </div>
