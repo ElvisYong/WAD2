@@ -1,7 +1,9 @@
 <script setup>
-import { ViewColumnsIcon } from '@heroicons/vue/20/solid';
 import { onMounted } from 'vue'
+import { useToast } from "vue-toastification";
 import { nearbySearch } from '../apis/gmaps'
+
+const toast = useToast();
 
 const center = ref({ lat: 1.3521, lng: 103.8198 })
 const currentPos = ref()
@@ -44,7 +46,7 @@ onMounted(() => {
     center.value = { lat: latitude.value, lng: longitude.value }
     currentPos.value = { lat: latitude.value, lng: longitude.value }
   }, error => {
-    console.log(error.message)
+    toast.error("Failed to get your location")
   })
 });
 
