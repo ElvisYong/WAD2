@@ -27,9 +27,41 @@ const logoutOnClick = () => logout({ returnTo: window.location.origin });
 </script>
 
 <template>
-    <div>
+    <!-- <div class="hero h-56 bg-grey mt-10 ml-5">
+        <div>
+        display profile picture and username beside it
+            <div class="flex flex-row justify-center items-center">
+                <div class="img_logout mr-2">
+                    <img class="w-20 h-20 rounded-full" :src="getProfileImage()" alt="Profile Picture">
+                </div>
+                <div class="username ml-2">
+                    <h1 class="text-2xl font-bold ml-4">{{ user.name }}</h1>
+                    <p>Tell me more about yourself</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
+    <div class="hero h-56 bg-light mx-8 justify-left">
+        <div class="hero-content">
+        <div class="grid grid-cols-2 gap-2 content-center">
+            <div>
+                <div class="img_logout mr-2">
+                    <img class="w-20 h-20 rounded-full justify-right" :src="getProfileImage()" alt="Profile Picture">
+                </div>
+            </div>
+            <div>
+                <div class="username ml-2 text-center">
+                <h1 class="text-2xl font-bold ml-4">{{ user.name }}</h1>
+                <p>Tell me more about yourself</p>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
+
+
+    
         <!-- <div v-if="isAuthenticated" class="flex flex-col">
             <div v-if="getProfileImage() !== ''">
                 <div class="avatar">
