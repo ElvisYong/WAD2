@@ -71,8 +71,8 @@ const onDeleteClick = async () => {
           </div>
         </div>
       </div>
-
     </div>
+    
     <div class="flex">
       <div class="mx-auto">
         <div v-if="recipes === null" class="mt-3">
