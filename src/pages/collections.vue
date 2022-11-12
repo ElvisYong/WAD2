@@ -64,14 +64,14 @@ const onDeleteClick = async () => {
             <h1 class="mb-5 text-5xl font-bold">{{ route.params.name }}</h1>
             <span class="flex justify-center">
               <p>{{ recipes.length }} Recipes</p>
-              <label for="delete-modal">
-                <TrashIcon @click="" class="ml-2 h5 w-5" />
+              <label for="delete-modal" class="hover:cursor-pointer">
+                <TrashIcon class="ml-2 h5 w-5" />
               </label>
             </span>
           </div>
         </div>
-
       </div>
+
     </div>
     <div class="flex">
       <div class="mx-auto">
