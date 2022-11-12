@@ -7,7 +7,7 @@ const PLACES_ENDPOINT = `${API_ENDPOINT}/gmaps`;
  * 
  * @param input - The search query
  * @param radius - The radius in meters
- * @param lat  - The latitudt API_ENDPOINT = "http://0.0.0.0:8080";e
+ * @param lat  - The latitude
  * @param lng  - The longitude
  * @returns 
  */
