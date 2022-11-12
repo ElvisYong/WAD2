@@ -95,7 +95,7 @@ const onDeleteClick = async () => {
       <h3 class="font-bold text-lg">Are you sure you want to delete this collection?</h3>
       <p class="py-4">You cannot revert this process</p>
       <div class="modal-action">
-        <label for="delete-modal" class="btn btn-secondary">Cancel</label>
+        <label for="delete-modal" class="btn btn-primary">Cancel</label>
         <label for="delete-modal" class="btn btn-error" @click="() => onDeleteClick()">Delete</label>
       </div>
     </div>
