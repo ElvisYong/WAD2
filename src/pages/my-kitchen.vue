@@ -53,9 +53,13 @@ const findRecipesByIngredients = async () => {
                     </div>
                 </div>
                 <div class="mt-6">
-                    <a href="#SRecipes" @click="findRecipesByIngredients"
+                    <!-- <a href="#SRecipes" @click="findRecipesByIngredients"
                         class="text-[#FDED54] font-bold no-underline hover:underline">Click for the magic to
-                        happen</a><span class="text-[#FDED54] font-bold mr-3"> ></span>
+                        happen</a><span class="text-[#FDED54] font-bold mr-3"> ></span> -->
+                        <a href="#SRecipes">
+                        <button class="btn btn-primary" @click="findRecipesByIngredients">Click for the magic to
+                        happen</button>
+                        </a>
                 </div>
 
             </div>
