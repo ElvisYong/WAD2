@@ -3,11 +3,11 @@ import { getUserCollections } from "../../apis/collections"
 import { useRouter } from 'vue-router'
 import { useAuth0 } from "@auth0/auth0-vue";
 
-const userCollections = ref([])
+const userCollections = ref(null)
 const { user, isAuthenticated, } = useAuth0();
 const router = useRouter();
 
-watch(user, async () => {
+onMounted(async () => {
   if (user.value) {
     try {
       if (user.value.sub) {
@@ -33,9 +33,14 @@ const gotoCollectionPage = (collection) => {
 </script>
 
 <template>
-  <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:gap-10">
-    <div v-for="collection in userCollections">
-      <CollectionsCardItem @click="gotoCollectionPage(collection)" :collection="collection" />
+  <div v-if="userCollections === null">
+    <Loader />
+  </div>
+  <div v-else>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:gap-10">
+      <div v-for="collection in userCollections">
+        <CollectionsCardItem @click="gotoCollectionPage(collection)" :collection="collection" />
+      </div>
     </div>
   </div>
 </template>

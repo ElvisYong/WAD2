@@ -35,8 +35,8 @@ const logoutOnClick = () => logout({ returnTo: window.location.origin });
     </div>
 
     <div class="mx-auto">
-        <h1 class="text-2xl text-left">Collections</h1>
-        <CollectionsGrid />
+      <h1 class="text-2xl text-left">Collections</h1>
+      <CollectionsGrid />
     </div>
 
   </div>
