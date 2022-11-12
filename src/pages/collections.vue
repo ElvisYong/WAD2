@@ -42,7 +42,7 @@ const onDeleteClick = async () => {
   const res = await deleteUserCollection(route.params.userId, route.params.name)
   if (res.statusCode.value === 200) {
     toast.success("Collection deleted")
-    document.location.href = "/";
+    document.location.href="/";
 
   } else {
     toast.error("Failed to delete collection")
@@ -62,7 +62,7 @@ const onDeleteClick = async () => {
         <div class="hero-content text-center text-neutral-content flex">
           <div class="max-w-md">
             <h1 class="mb-5 text-5xl font-bold">{{ route.params.name }}</h1>
-            <span class="flex">
+            <span class="flex items-center justify-content-center">
               <p>{{ recipes.length }} Recipes
               </p>
 
@@ -81,13 +81,10 @@ const onDeleteClick = async () => {
           <Loader />
         </div>
         <div v-if="recipes.length === 0">
-          <h1 class="mt-5">Oh no you have no recipes added</h1>
+          <h1 class="mt-5">Oops! You have no recipes added</h1>
         </div>
         <div v-else>
-          <RecipesGrid :recipes="recipes">
-            {{ collectionName }}
-            <!--Insert Collection Name Here -->
-          </RecipesGrid>
+          <RecipesGrid :recipes="recipes" />
         </div>
       </div>
     </div>
