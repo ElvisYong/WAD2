@@ -1,9 +1,8 @@
-# Vite, Vue3, Tailwind CSS (single-page app)
+# 4 Start Michelin Frontend
 
-![Vite, Vue, Tailwind CSS](https://user-images.githubusercontent.com/11320080/111277027-a9384c00-8640-11eb-8323-21889bd7c609.png)
+Production deployment url: <https://wad-2-cookbook.vercel.app/>
 
-This starter template includes:
-
+## Built with
 - [**Vite 3**](https://vitejs.dev/guide/)
 - [**Vue 3**](https://vuejs.org/guide/introduction.html)
 - [**Tailwind CSS 3**](https://tailwindcss.com/docs/configuration)
@@ -31,18 +30,16 @@ Unplugin Utilities:
 
 ## Usage
 
-```apache
+```
 # install #
-
-npx degit web2033/vite-vue3-tailwind-starter vvt-app
-cd vvt-app
 npm i
 
-# run #
+# run in development build #
 
 npm run dev
+
+# run in production build #
+
 npm run build
 npm run serve
 ```
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/web2033/vite-vue3-tailwind-starter)

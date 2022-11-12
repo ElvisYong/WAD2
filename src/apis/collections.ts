@@ -65,3 +65,9 @@ export const deleteRecipeIdFromCollection = async (userId: string, name: string,
     `${COLLECTIONS_ENDPOINT}/${userId}/${name}?recipeId=${recipeId}`,
   ).delete().json();
 }
+
+export const deleteUserCollection = async (userId: string, name: string) => {
+  return await useFetch(
+    `${COLLECTIONS_ENDPOINT}?userId=${userId}&name=${name}`,
+  ).delete().json();
+}

@@ -81,7 +81,7 @@ const loadMoreData = async () => {
       </div>
     </div> -->
 
-    <div class="hero min-h-screen bg-[url('otherfood.png')]" id="search" >
+    <div class="hero min-h-screen bg-[url('/otherfood.png')]" id="search" >
       <div class="hero-content text-center">
         <div class="max-w-md">
           <h1 class="text-5xl font-bold text-white">Recipe Search</h1>
