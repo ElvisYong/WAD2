@@ -59,13 +59,11 @@ const onDeleteClick = async () => {
     <div class="flex">
       <div class="hero h-56" style="background-image: url(/grainy_food.png);">
         <div class="hero-overlay bg-opacity-60"></div>
-        <div class="hero-content text-center text-neutral-content flex">
+        <div class="hero-content text-center text-neutral-content flex ">
           <div class="max-w-md">
             <h1 class="mb-5 text-5xl font-bold">{{ route.params.name }}</h1>
-            <span class="flex items-center justify-content-center">
-              <p>{{ recipes.length }} Recipes
-              </p>
-
+            <span class="flex justify-center">
+              <p>{{ recipes.length }} Recipes</p>
               <label for="delete-modal">
                 <TrashIcon @click="" class="ml-2 h5 w-5" />
               </label>
