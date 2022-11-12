@@ -20,11 +20,11 @@ const cuisines = ref(props.cuisines)
         </div>
         <div
           class="opacity-0 hover:opacity-60 absolute inset-0 flex justify-center text-sm text-white py-2 bg-black items-center">
-          <div v-for="cuisine in cuisines">
-            {{ cuisine }}
+          <div v-if="cuisines.length > 0">
+            {{ cuisines[0] }}
           </div>
-          <div v-for="diet in diets">
-            {{ diet }}
+          <div v-else>
+            {{ diets[0] }}
           </div>
         </div>
       </div>
