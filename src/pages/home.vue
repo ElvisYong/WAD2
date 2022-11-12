@@ -101,9 +101,8 @@ const loadMoreData = async () => {
               <Loader />
             </div>
             <div ref="el" v-else>
-              <RecipesGrid @load-more="loadMoreData" :recipes="randomRecipes">
-                <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1>
-              </RecipesGrid>
+              <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1>
+              <RecipesGrid @load-more="loadMoreData" :recipes="randomRecipes"/>
             </div>
           </div>
         </div>
