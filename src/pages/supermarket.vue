@@ -6,9 +6,8 @@ import { nearbySearch } from '../apis/gmaps'
 const toast = useToast();
 
 const center = ref({ lat: 1.3521, lng: 103.8198 })
-const currentPos = ref()
-const latitude = ref(null)
-const longitude = ref(null)
+const currentPos = ref({ lat: 1.3521, lng: 103.8198 })
+
 const markers = ref([])
 const keyword = ref("Supermarket")
 const vicinity = ref(100)
@@ -41,19 +40,17 @@ const fetchNearbySuperMarket = async () => {
 
 onMounted(() => {
   navigator.geolocation.getCurrentPosition(position => {
-    latitude.value = position.coords.latitude
-    longitude.value = position.coords.longitude
-    center.value = { lat: latitude.value, lng: longitude.value }
-    currentPos.value = { lat: latitude.value, lng: longitude.value }
+    center.value = { lat: position.coords.latitude, lng: position.coords.longitude }
+    currentPos.value = { lat: position.coords.latitude, lng: position.coords.longitude }
   }, error => {
-    toast.error("Failed to get your location")
+    toast.error("Failed to get your location. Please enable location to search for nearby supermarkets!")
   })
 });
 
-watch([latitude, longitude],
+watch(currentPos,
   async () => {
     markers.value.push({
-      position: { lat: latitude.value, lng: longitude.value },
+      position: { lat: currentPos.value.lat, lng: currentPos.value.lng},
     })
     await fetchNearbySuperMarket();
   }
@@ -91,11 +88,12 @@ watch(vicinity, async () => {
         <button class="btn btn-primary btn-sm" @click="vicinity = 100">100m</button>
         <button class="btn btn-primary btn-sm" @click="vicinity = 500">500m</button>
         <button class="btn btn-primary btn-sm" @click="vicinity = 1000">1km</button>
+        <button class="btn btn-primary btn-sm" @click="vicinity = 5000">5km</button>
       </div>
     </div>
 
-    <div v-if="latitude !== null && longitude !== null && markers.length > 0">
-      <GMapMap :center="center" :zoom="16" map-type-id="terrain" style="width: 100vh; height: 100vh;">
+    <div v-if="currentPos.lng !== null && currentPos.lat !== null && markers.length > 0">
+      <GMapMap :center="center" :zoom="16" map-type-id="terrain" style="width: 100vh; height: 80vh;">
         <GMapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true"
           @click="center = m.position">
           <div v-if="currentPos.lat === m.position.lat && currentPos.lng === m.position.lng">
@@ -113,6 +111,10 @@ watch(vicinity, async () => {
             </GMapInfoWindow>
           </div>
         </GMapMarker>
+      </GMapMap>
+    </div>
+    <div class="self-start" v-else>
+      <GMapMap :center="center" :zoom="16" map-type-id="terrain" style="width: 100vh; height: 80vh;">
       </GMapMap>
     </div>
 
