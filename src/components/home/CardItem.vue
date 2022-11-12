@@ -1,5 +1,4 @@
 <script setup>
-import { useRouter } from 'vue-router'
 import { defineProps, ref } from 'vue';
 
 const props = defineProps(['title', 'image', 'tags', 'diets', 'cuisines'])

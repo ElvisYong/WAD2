@@ -1,5 +1,4 @@
 <script setup>
-import { getUserCollectionByName, deleteUserCollection } from "../apis/collections"
 import { useAuth0 } from "@auth0/auth0-vue";
 import { watch } from "vue";
 
@@ -36,7 +35,8 @@ const logoutOnClick = () => logout({ returnTo: window.location.origin });
     </div>
 
     <div class="mx-auto">
-      <h1 class="text-2xl text-left">Collections</h1>
+        <h1 class="text-2xl text-left">Collections</h1>
+        <CollectionsGrid />
     </div>
 
   </div>

@@ -13,11 +13,6 @@ const recipe = ref(props.recipe)
 const userCollections = ref([])
 const checkedBoxes = ref([])
 
-watch(checkedBoxes, () => {
-  console.log(checkedBoxes.value)
-})
-
-
 onMounted(async () => {
   if (user.value) {
     try {
@@ -27,7 +22,6 @@ onMounted(async () => {
 
         // Populate the checkbox
         for(const collection of res.data.value) {
-          console.log(collection)
           if (collection.recipes.includes(recipe.value.id)) {
             checkedBoxes.value.push(collection.collectionName)
           }

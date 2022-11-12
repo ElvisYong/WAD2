@@ -14,7 +14,6 @@ const greetings = ref("Hello!")
 const fetchGetRandomRecommendations = async (number) => {
   try {
     const response = await getRandomRecommendations(false, "meat,lunch", number)
-    console.log(response.data.value.recipes)
     return response.data.value.recipes
   } catch (error) {
     console.log(error)

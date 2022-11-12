@@ -11,7 +11,6 @@ const recipes = ref([])
 
 const addIngredient = (ingredientName) => {
   selectedIngredients.value.push(ingredientName);
-  console.log(selectedIngredients.value)
 }
 
 const removeIngredient = (index) => {

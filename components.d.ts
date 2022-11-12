@@ -9,6 +9,8 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ButtonRepo: typeof import('./src/components/ButtonRepo.vue')['default']
     CardItem: typeof import('./src/components/home/CardItem.vue')['default']
+    CollectionsCardItem: typeof import('./src/components/profile/CollectionsCardItem.vue')['default']
+    CollectionsGrid: typeof import('./src/components/profile/CollectionsGrid.vue')['default']
     CuisinesCarousel: typeof import('./src/components/home/CuisinesCarousel.vue')['default']
     GeneralSearchBar: typeof import('./src/components/GeneralSearchBar.vue')['default']
     Ingredients: typeof import('./src/components/recipe-info/Ingredients.vue')['default']
