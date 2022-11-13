@@ -125,7 +125,7 @@ const checkEvent = async (event) => {
   </div>
 
   <input type="checkbox" id="collectionsModal" class="modal-toggle" />
-  <div class="modal modal-bottom sm:modal-middle">
+  <div class="modal">
     <div class="modal-box">
       <h3 class="font-bold text-lg">Save To Collections</h3>
       <div v-if="isAuthenticated">
@@ -142,10 +142,10 @@ const checkEvent = async (event) => {
         </div>
       </div>
       <div v-else>
-        <p>Failed to get collections</p>
+        <p>You're not logged in, </p>
       </div>
       <div class="modal-action">
-        <label for="collectionsModal" class="btn">Yay!</label>
+        <label for="collectionsModal" class="btn">Close</label>
       </div>
     </div>
   </div>

@@ -1,16 +1,15 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-import { useInfiniteScroll, useWindowSize, useVirtualList } from '@vueuse/core';
 import { useAuth0 } from "@auth0/auth0-vue";
 import { getUserCollections } from '../../apis/collections'
+import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 
 const { user } = useAuth0();
 const router = useRouter()
-const { height } = useWindowSize();
 
 const props = defineProps(["recipes"])
-const emits = defineEmits(["load-more"])
+const emits = defineEmits(["loadMore"])
 
 const recipes = ref(props.recipes)
 const userCollections = ref([])
@@ -28,11 +27,6 @@ onMounted(async () => {
   }
 })
 
-const { containerProps } = useVirtualList(recipes, {
-  itemHeight: 80,
-  overscan: 5,
-});
-
 const gotoRecipeInfo = (recipe) => {
   router.push({
     path: '/recipe-info/:id',
@@ -41,15 +35,10 @@ const gotoRecipeInfo = (recipe) => {
   })
 }
 
-useInfiniteScroll(containerProps.ref, () => {
-  emits("load-more")
-}, { distance: 10 }
-);
-
 </script>
 
 <template>
-  <div class="mt-6 no-scrollbar" v-bind="containerProps" :style="{ height: height - 10 + 'px' }">
+  <div class="mt-6 no-scrollbar ">
     <div class="md:mx-3">
       <slot></slot>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 md:gap-10">
@@ -58,6 +47,9 @@ useInfiniteScroll(containerProps.ref, () => {
             :userCollections="userCollections" :recipeId="recipe.id" @cardClick="gotoRecipeInfo(recipe)"
             @linkClick="gotoRecipeInfo(recipe)" />
         </div>
+      </div>
+      <div class="mx-auto">
+        <ChevronDownIcon @click="$emit('loadMore')" class="h-10 hover:cursor-pointer w-10 mx-auto animate-bounce" />
       </div>
     </div>
   </div>

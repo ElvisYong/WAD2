@@ -2,7 +2,6 @@
 import { getRandomRecommendations } from '../apis/recipes'
 import { watch } from "vue";
 import { useAuth0 } from "@auth0/auth0-vue";
-import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 
 useHead({
   title: "Home",
@@ -39,7 +38,6 @@ watch(user, async () => {
 })
 
 const loadMoreData = async () => {
-  isLoadingMore.value = true
   const recipes = await fetchGetRandomRecommendations(10);
   const filteredData = recipes.filter(recipe => !randomRecipes.value.includes(recipe))
   randomRecipes.value.push(...filteredData)
@@ -87,7 +85,7 @@ const loadMoreData = async () => {
     </div>
   </div>
 
-  <div class="hero min-h-screen bg-light" v-motion-fade-visible>
+  <div class="hero min-h-screen bg-light" v-motion-fade-visible-once>
     <div class="hero-content text-center">
       <div class="mx-auto">
         <div id="recipes">
@@ -96,10 +94,7 @@ const loadMoreData = async () => {
           </div>
           <div v-else>
             <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1>
-            <RecipesGrid @load-more="loadMoreData" :recipes="randomRecipes" />
-            <div class="mx-auto">
-              <ChevronDownIcon class="h-10 w-10 mx-auto animate-bounce" />
-            </div>
+            <RecipesGrid @loadMore="loadMoreData" :recipes="randomRecipes"/>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { useToast } from "vue-toastification";
 import { nearbySearch } from '../apis/gmaps'
 
 useHead({
-  title: "Locator",
+  title: "Supermarket",
 });
 
 const toast = useToast();

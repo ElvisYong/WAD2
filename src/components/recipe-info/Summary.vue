@@ -123,7 +123,7 @@ const checkEvent = async (event) => {
     </div>
 
     <input type="checkbox" id="collectionsModal" class="modal-toggle" />
-    <div class="modal modal-bottom sm:modal-middle">
+    <div class="modal modal-middle">
       <div class="modal-box">
         <h3 class="font-bold text-lg">Save To Collections</h3>
         <div v-if="isAuthenticated">
