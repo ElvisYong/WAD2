@@ -117,14 +117,14 @@ const checkEvent = async (event) => {
 
     <div class="flex text-xl mt-1 md:text-md lg:text-sm">
       <TextLink @click="$emit('linkClick')" class="text-left">{{ title }}</TextLink>
-      <label for="collectionsModal" class="ml-auto btn btn-primary btn-circle btn-sm self-top">
+      <label :for="recipeId" class="ml-auto btn btn-primary btn-circle btn-sm self-top">
         <StarIcon class="h-4 w-4" />
       </label>
     </div>
 
   </div>
 
-  <input type="checkbox" id="collectionsModal" class="modal-toggle" />
+  <input type="checkbox" :id="recipeId" class="modal-toggle" />
   <div class="modal">
     <div class="modal-box">
       <h3 class="font-bold text-lg">Save To Collections</h3>
@@ -145,7 +145,7 @@ const checkEvent = async (event) => {
         <p>You're not logged in</p>
       </div>
       <div class="modal-action">
-        <label for="collectionsModal" class="btn">Close</label>
+        <label :for="recipeId" class="btn">Close</label>
       </div>
     </div>
   </div>
