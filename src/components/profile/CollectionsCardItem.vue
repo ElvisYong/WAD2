@@ -19,12 +19,13 @@ const modalId = ref(props.collection._id)
     </div>
 
     <div class="flex mb-2 text-xl md:text-lg lg:text-md">
-      <TextLink @click="$emit('linkClick')" class="text-center md:text-left">{{ collection.collectionName }}</TextLink>
-      <span>
-        <label for="delete-modal" class="hover:cursor-pointer ml-auto">
-          <TrashIcon class="ml-2 h-5 w-5" />
-        </label>
-      </span>
+      <div>
+        <TextLink @click="$emit('linkClick')" class="text-center md:text-left">{{ collection.collectionName }}
+        </TextLink>
+      </div>
+      <label :for="modalId" class="hover:cursor-pointer ml-auto">
+        <TrashIcon class="ml-auto h-5 w-5" />
+      </label>
     </div>
   </div>
 
