@@ -4,7 +4,9 @@ import { watch } from "vue";
 import { useRoute, useRouter } from 'vue-router';
 import { MagnifyingGlassIcon, PlusIcon, XMarkIcon, FolderIcon } from '@heroicons/vue/20/solid';
 import { addCollections, getUserCollections } from "../../apis/collections";
+import { useToast } from "vue-toastification";
 
+const toast = useToast();
 const { loginWithPopup, logout, user, isAuthenticated, } = useAuth0();
 const route = useRoute();
 const router = useRouter();
@@ -40,7 +42,7 @@ const addNewCollection = async (event) => {
   const userId = user.value.sub
 
   if (value === "" || value === null) {
-    alert("Collection requires a name")
+    toast.warning("Collection requires a name")
   } else {
     const res = await addCollections(value, userId);
     if (res.response.value.status === 200) {
@@ -48,13 +50,16 @@ const addNewCollection = async (event) => {
       try {
         if (user.value.sub) {
           const res = await getUserCollections(user.value.sub)
-          userCollections.value = res.data.value
+          if (res.isFinished) {
+            userCollections.value = res.data.value
+            location.reload()
+          }
         }
       } catch (error) {
         console.log(error)
       }
     } else if (res.response.value.status === 403) {
-      alert(res.data.value.message)
+      toast.error(res.data.value.message)
     }
   }
 }

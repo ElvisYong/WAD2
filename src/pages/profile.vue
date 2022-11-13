@@ -1,6 +1,5 @@
 <script setup>
 import { useAuth0 } from "@auth0/auth0-vue";
-import { watch } from "vue";
 
 useHead({
   title: "Profile Page",
