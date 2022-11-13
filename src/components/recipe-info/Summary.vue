@@ -10,10 +10,15 @@ const { user, isAuthenticated } = useAuth0();
 
 const props = defineProps(['recipe'])
 const recipe = ref(props.recipe)
+const image = ref(props.recipe.image)
 const userCollections = ref([])
 const checkedBoxes = ref([])
 
 onMounted(async () => {
+  if (image.value === undefined) {
+    image.value = '/chef.jpg'
+  }
+
   if (user.value) {
     try {
       if (user.value.sub) {
@@ -21,7 +26,7 @@ onMounted(async () => {
         userCollections.value = res.data.value
 
         // Populate the checkbox
-        for(const collection of res.data.value) {
+        for (const collection of res.data.value) {
           if (collection.recipes.includes(recipe.value.id)) {
             checkedBoxes.value.push(collection.collectionName)
           }
@@ -34,13 +39,13 @@ onMounted(async () => {
 })
 
 const addToCollection = async (collectionName) => {
-  if(user.value) {
+  if (user.value) {
     const userId = user.value.sub
     const recipeId = recipe.value.id
 
-    
+
     let res = await addRecipeIdToCollection(userId, collectionName, recipeId)
-    if(res.statusCode.value === 200){
+    if (res.statusCode.value === 200) {
       toast.success("Added to collection")
     } else {
       toast.error("Failed to add to collection")
@@ -49,12 +54,12 @@ const addToCollection = async (collectionName) => {
 }
 
 const removeFromCollection = async (collectionName) => {
-  if(user.value) {
+  if (user.value) {
     const userId = user.value.sub
     const recipeId = recipe.value.id
 
     let res = await deleteRecipeIdFromCollection(userId, collectionName, recipeId)
-    if(res.statusCode.value === 200){
+    if (res.statusCode.value === 200) {
       toast.success("Delete from collection")
     } else {
       toast.error("Failed to add to collection")
@@ -110,7 +115,7 @@ const checkEvent = async (event) => {
         </div>
         <div class="avatar mr-0">
           <div class="w-96 rounded">
-            <img :src="recipe.image" :alt="recipe.title" />
+            <img :src="image" />
           </div>
 
         </div>
@@ -128,7 +133,8 @@ const checkEvent = async (event) => {
           <!-- checkbox -->
           <div v-else v-for="collection in userCollections">
             <div class="flex flex-row items-center gap-2">
-              <input @change="checkEvent" type="checkbox" v-model="checkedBoxes" :value="collection.collectionName" :id="collection.collectionName" />
+              <input @change="checkEvent" type="checkbox" v-model="checkedBoxes" :value="collection.collectionName"
+                :id="collection.collectionName" />
               <label :for="collection.collectionName">{{ collection.collectionName }}</label>
             </div>
           </div>

@@ -9,7 +9,7 @@ const cuisines = ref(props.cuisines)
 
 onMounted(() => {
   if (image.value === undefined) {
-    image.value = './otherfood_x.jpg'
+    image.value = '/chef.jpg'
   }
 })
 
@@ -20,7 +20,7 @@ onMounted(() => {
     <div class="avatar cursor-pointer">
       <div class="w-80 md:w-60 lg:w-40 rounded-lg relative">
         <div class="absolute inset-0 bg-cover bg-center z-0">
-          <img class="rounded" :src="image" @error="replaceImageDefault" />
+          <img class="rounded" :src="image" />
         </div>
         <div
           class="opacity-0 hover:opacity-60 absolute inset-0 flex justify-center text-sm text-white py-2 bg-black items-center">
