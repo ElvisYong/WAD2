@@ -20,7 +20,7 @@ onMounted(async () => {
     try {
       if (user.value.sub) {
         const res = await getUserCollections(user.value.sub)
-        userCollections.value = res.data.value
+        userCollections.value.push(...res.data.value)
       }
     } catch (error) {
       console.log(error)
@@ -51,7 +51,6 @@ useInfiniteScroll(containerProps.ref, () => {
 <template>
   <div class="mt-6 no-scrollbar" v-bind="containerProps" :style="{ height: height - 10 + 'px' }">
     <div class="md:mx-3">
-      <!-- <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1> -->
       <slot></slot>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 md:gap-10">
         <div v-for="recipe in recipes" class="text-center mt-0 mb-5">

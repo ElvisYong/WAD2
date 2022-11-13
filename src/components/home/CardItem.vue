@@ -2,7 +2,10 @@
 import { defineProps, ref } from 'vue';
 import { StarIcon } from '@heroicons/vue/20/solid';
 import { useAuth0 } from "@auth0/auth0-vue";
+import { addRecipeIdToCollection, deleteRecipeIdFromCollection } from "../../apis/collections";
+import { useToast } from "vue-toastification";
 
+const toast = useToast();
 const { user, isAuthenticated } = useAuth0();
 
 const props = defineProps(['title', 'image', 'tags', 'diets', 'cuisines', 'userCollections', 'recipeId'])
@@ -26,6 +29,25 @@ onMounted(async () => {
       if (user.value.sub) {
         // Populate the checkbox
         for (const collection of userCollections.value) {
+          console.log(collection.recipes)
+          console.log(recipeId.value)
+          if (collection.recipes.includes(recipeId.value)) {
+            checkedBoxes.value.push(collection.collectionName)
+          }
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+})
+
+watch(userCollections.value, () => {
+  if (user.value) {
+    try {
+      if (user.value.sub) {
+        // Populate the checkbox
+        for (const collection of userCollections.value) {
           if (collection.recipes.includes(recipeId.value)) {
             checkedBoxes.value.push(collection.collectionName)
           }
@@ -40,14 +62,25 @@ onMounted(async () => {
 const addToCollection = async (collectionName) => {
   if (user.value) {
     const userId = user.value.sub
-    const recipeId = recipe.value.id
 
-
-    let res = await addRecipeIdToCollection(userId, collectionName, recipeId)
+    let res = await addRecipeIdToCollection(userId, collectionName, recipeId.value)
     if (res.statusCode.value === 200) {
       toast.success("Added to collection")
     } else {
       toast.error("Failed to add to collection")
+    }
+  }
+}
+
+const removeFromCollection = async (collectionName) => {
+  if (user.value) {
+    const userId = user.value.sub
+
+    let res = await deleteRecipeIdFromCollection(userId, collectionName, recipeId.value)
+    if (res.statusCode.value === 200) {
+      toast.success("Delete from collection")
+    } else {
+      toast.error("Failed to remove from collection")
     }
   }
 }

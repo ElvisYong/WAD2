@@ -62,7 +62,7 @@ const removeFromCollection = async (collectionName) => {
     if (res.statusCode.value === 200) {
       toast.success("Delete from collection")
     } else {
-      toast.error("Failed to add to collection")
+      toast.error("Failed to remove to collection")
     }
   }
 }
