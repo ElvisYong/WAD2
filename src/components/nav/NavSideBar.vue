@@ -189,7 +189,7 @@ const gotoCollectionPage = (collection) => {
 
               <div class="mt-1 max-h-56 overflow-y-auto">
                 <div v-for="collection in userCollections">
-                  <TextLink @click="gotoCollectionPage(collection)">
+                  <TextLink v-motion-fade @click="gotoCollectionPage(collection)">
                     <div class="flex justify-center text-left">
                       <div class="align-top">
                         <FolderIcon class="w-5 mr-1" />
