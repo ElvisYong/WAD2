@@ -85,7 +85,7 @@ const loadMoreData = async () => {
     </div>
   </div>
 
-  <div class="hero min-h-screen bg-light" v-motion-fade-visible-once>
+  <div class="hero min-h-screen bg-light">
     <div class="hero-content text-center">
       <div class="mx-auto">
         <div id="recipes">
