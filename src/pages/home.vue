@@ -38,7 +38,6 @@ watch(user, async () => {
 })
 
 const loadMoreData = async () => {
-  isLoadingMore.value = true
   const recipes = await fetchGetRandomRecommendations(10);
   const filteredData = recipes.filter(recipe => !randomRecipes.value.includes(recipe))
   randomRecipes.value.push(...filteredData)
@@ -95,7 +94,7 @@ const loadMoreData = async () => {
           </div>
           <div v-else>
             <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1>
-            <RecipesGrid @loadMore="loadMoreData" :recipes="randomRecipes" />
+            <RecipesGrid @loadMore="loadMoreData" :recipes="randomRecipes"/>
           </div>
         </div>
       </div>
