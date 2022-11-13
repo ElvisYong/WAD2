@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, nextTick } from 'vue'
 import { getRecipesByIngredients } from "../apis/recipes";
 
 useHead({
@@ -8,6 +8,7 @@ useHead({
 
 const selectedIngredients = ref(["water", "salt", "olive oil"]);
 const recipes = ref([])
+const isLoading = ref(true)
 
 const addIngredient = (ingredientName) => {
   selectedIngredients.value.push(ingredientName);
@@ -18,8 +19,18 @@ const removeIngredient = (index) => {
 }
 
 const findRecipesByIngredients = async () => {
+  isLoading.value = true
+  if (recipes.value.length > 0) {
+    recipes.value.splice(0, recipes.value.length)
+  }
   const res = await getRecipesByIngredients(selectedIngredients.value, 50);
-  recipes.value = res.data.value
+  if (res.isFinished) {
+    recipes.value.push(...res.data.value)
+    isLoading.value = false
+
+  }
+  await nextTick();
+  location.href = "#SRecipes"
 }
 
 </script>
@@ -51,7 +62,7 @@ const findRecipesByIngredients = async () => {
           </div>
         </div>
         <div class="mt-6">
-          <a href="#SRecipes" @click="findRecipesByIngredients"
+          <a @click="findRecipesByIngredients"
             class="text-[#FDED54] font-bold no-underline hover:underline">Click for the magic to
             happen</a><span class="text-[#FDED54] font-bold mr-3"> ></span>
         </div>
@@ -61,13 +72,15 @@ const findRecipesByIngredients = async () => {
   </div>
 
 
-  <div class="hero min-h-screen bg-light">
-    <div class="hero-content text-center">
-      <div class="mx-auto" id="SRecipes">
-        <div v-if="recipes && recipes.length > 0" class="mt-6">
-          <RecipesGrid :recipes="recipes">
-            <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1>
-          </RecipesGrid>
+  <div v-if="recipes && recipes.length > 0">
+    <div class="hero min-h-screen bg-light">
+      <div class="hero-content text-center">
+        <div class="mx-auto" id="SRecipes">
+          <div v-if="recipes && recipes.length > 0" class="mt-6">
+            <RecipesGrid :recipes="recipes">
+              <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1>
+            </RecipesGrid>
+          </div>
         </div>
       </div>
     </div>
