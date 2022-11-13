@@ -14,30 +14,26 @@ const logoutOnClick = () => logout({ returnTo: window.location.origin });
 
 <template>
   <div class="flex flex-col">
-    <div class="mx-auto">
-      <div class="hero h-56 bg-light justify-left">
-        <div class="hero-content">
-          <div class="grid grid-cols-2 gap-2 content-center">
-            <div>
-              <div class="img_logout mr-2">
-                <img class="w-20 h-20 rounded-full justify-right" :src="getProfileImage()" alt="Profile Picture">
+    <div class="mr-20">
+      <div class="hero h-56 bg-light">
+        <div class="hero-content justify-items-start">
+          <div class="grid grid-cols-2 gap-2">
+              <div class="flex img justify-end">
+                <img class="w-20 h-20 rounded-full" :src="getProfileImage()" alt="Profile Picture">
               </div>
-            </div>
-            <div>
-              <div class="username ml-2 text-center">
+              <div class="username ml-2 text-center align-center">
                 <h1 class="text-2xl font-bold ml-4">{{ user.name }}</h1>
                 <p>Tell me more about yourself</p>
               </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="mx-auto">
-      <h1 class="text-2xl text-left font-bold">Collections</h1>
-      <div class="mt-6">
-        <CollectionsGrid />
+    <div class="mx-auto md:mx-10">
+      <h1 class="text-2xl text-center md:text-left font-bold">Collections</h1>
+      <div class="mt-6 justify-center">
+        <CollectionsGrid class="justify-center"/>
       </div>
     </div>
 

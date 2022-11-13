@@ -35,11 +35,13 @@ const onDeleteClick = async () => {
       </div>
     </div>
 
-    <div class="flex mt-1 text-xl md:text-lg lg:text-md">
-      <TextLink @click="$emit('linkClick')" class="text-left">{{ collection.collectionName }}</TextLink>
-      <label for="delete-modal" class="hover:cursor-pointer ml-auto">
-        <TrashIcon class="ml-2 h-5 w-5" />
-      </label>
+    <div class="flex mb-2 text-xl md:text-lg lg:text-md">
+      <TextLink @click="$emit('linkClick')" class="text-center md:text-left">{{ collection.collectionName }}</TextLink>
+      <span>
+        <label for="delete-modal" class="hover:cursor-pointer ml-auto">
+          <TrashIcon class="ml-2 h-5 w-5" />
+        </label>
+      </span>
     </div>
   </div>
 
