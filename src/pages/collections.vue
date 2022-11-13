@@ -65,7 +65,7 @@ const onDeleteClick = async () => {
             <span class="flex justify-center">
               <p>{{ recipes.length }} Recipes</p>
               <label for="delete-modal" class="hover:cursor-pointer">
-                <TrashIcon class="ml-2 h5 w-5" />
+                <TrashIcon class="ml-2 h-5 w-5" />
               </label>
             </span>
           </div>
