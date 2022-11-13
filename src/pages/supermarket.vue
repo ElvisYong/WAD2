@@ -3,18 +3,22 @@ import { onMounted } from 'vue'
 import { useToast } from "vue-toastification";
 import { nearbySearch } from '../apis/gmaps'
 
+useHead({
+  title: "Locator",
+});
+
 const toast = useToast();
 
 const center = ref({ lat: 1.3521, lng: 103.8198 })
 const currentPos = ref({ lat: 1.3521, lng: 103.8198 })
 
 const markers = ref([])
-const keyword = ref("Supermarket")
+const keyword = ref("")
 const vicinity = ref(100)
 
 const fetchNearbySuperMarket = async () => {
   const { lat, lng } = center.value
-  const { data } = await nearbySearch(keyword.value, vicinity.value, lat, lng, "Supermarket")
+  const { data } = await nearbySearch(keyword.value, vicinity.value, lat, lng, "")
   const nearbySupermarkets = data.value.results
 
   // Clear the array first
@@ -67,14 +71,10 @@ watch(vicinity, async () => {
   <div class="mt-10 container flex flex-col mx-32" v-motion-fade>
     <h1 class="text-2xl font-bold">Missing Ingredients? Look no further!</h1>
 
-    <div>
+    <div class="mt-1">
       <div class="form-control w-full max-w-xs">
+        <input type="text" v-model="keyword" placeholder="Enter Supermarket Name Here" class="input input-bordered w-full max-w-xs" />
         <label class="label">
-          <span class="label-text">Search supermarket</span>
-        </label>
-        <input type="text" v-model="keyword" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-        <label class="label">
-          <span class="label-text-alt"></span>
           <span class="label-text-alt">e.g ntuc</span>
         </label>
       </div>
