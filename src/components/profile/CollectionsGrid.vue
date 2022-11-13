@@ -39,7 +39,8 @@ const gotoCollectionPage = (collection) => {
   <div v-else>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:gap-10">
       <div v-for="collection in userCollections">
-        <CollectionsCardItem @click="gotoCollectionPage(collection)" :collection="collection" />
+        <CollectionsCardItem @linkClick="gotoCollectionPage(collection)" @cardClick="gotoCollectionPage(collection)"
+          :collection="collection" />
       </div>
     </div>
   </div>
