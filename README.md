@@ -28,8 +28,18 @@ Unplugin Utilities:
 - [**unplugin-auto-import**](https://github.com/antfu/unplugin-auto-import) - auto import the most used APIs
 - [**unplugin-vue-router**](https://github.com/posva/unplugin-vue-router) - file based routing for vue-router
 
-## Usage
 
+## Environment file
+Create a new environment file called .env in the root folder
+
+Required environment variables
+```
+VITE_AUTH_DOMAIN=
+VITE_AUTH_CLIENT_ID=
+VITE_GOOGLE_MAPS_API_KEY=
+```
+
+## Usage
 ```
 # install #
 npm i
