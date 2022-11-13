@@ -8,9 +8,10 @@ import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 const { user } = useAuth0();
 const router = useRouter()
 
-const props = defineProps(["recipes"])
+const props = defineProps(["recipes", "loadMoreChevron"])
 const emits = defineEmits(["loadMore"])
 
+const loadMoreChevron = ref(props.loadMoreChevron)
 const recipes = ref(props.recipes)
 const userCollections = ref([])
 
@@ -48,14 +49,11 @@ const gotoRecipeInfo = (recipe) => {
             @linkClick="gotoRecipeInfo(recipe)" />
         </div>
       </div>
-      <div class="mx-auto">
+
+      <div v-if="loadMoreChevron" class="mx-auto">
         <ChevronDownIcon @click="$emit('loadMore')" class="h-10 hover:cursor-pointer w-10 mx-auto animate-bounce" />
       </div>
     </div>
   </div>
 
 </template>
-
-<style scoped>
-
-</style>
