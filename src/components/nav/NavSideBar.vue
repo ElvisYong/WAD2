@@ -187,10 +187,10 @@ const gotoCollectionPage = (collection) => {
                 </label>
               </div>
 
-              <div class="ml-2 mt-1 max-h-56 overflow-y-auto">
+              <div class="mt-1 max-h-56 overflow-y-auto">
                 <div v-for="collection in userCollections">
                   <TextLink @click="gotoCollectionPage(collection)">
-                    <div class="flex text-left">
+                    <div class="flex justify-center text-left">
                       <div class="align-top">
                         <FolderIcon class="w-5 mr-1" />
                       </div>
