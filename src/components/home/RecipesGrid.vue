@@ -2,14 +2,31 @@
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { useInfiniteScroll, useWindowSize, useVirtualList } from '@vueuse/core';
+import { useAuth0 } from "@auth0/auth0-vue";
+import { getUserCollections } from '../../apis/collections'
 
+const { user } = useAuth0();
 const router = useRouter()
+const { height } = useWindowSize();
+
 const props = defineProps(["recipes"])
 const emits = defineEmits(["load-more"])
-const recipes = ref(props.recipes)
 
-const el = ref(null);
-const { height } = useWindowSize();
+const recipes = ref(props.recipes)
+const userCollections = ref([])
+
+onMounted(async () => {
+  if (user.value) {
+    try {
+      if (user.value.sub) {
+        const res = await getUserCollections(user.value.sub)
+        userCollections.value = res.data.value
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+})
 
 const { containerProps } = useVirtualList(recipes, {
   itemHeight: 80,
@@ -36,14 +53,16 @@ useInfiniteScroll(containerProps.ref, () => {
     <div class="md:mx-3">
       <!-- <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1> -->
       <slot></slot>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:gap-10">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 md:gap-10">
         <div v-for="recipe in recipes" class="text-center mt-0 mb-5">
-          <CardItem @click="gotoRecipeInfo(recipe)" :title="recipe.title" :image="recipe.image"
-            :cuisines="recipe.cuisines" :diets="recipe.diets" />
+          <CardItem :title="recipe.title" :image="recipe.image" :cuisines="recipe.cuisines" :diets="recipe.diets"
+            :userCollections="userCollections" :recipeId="recipe.id" @cardClick="gotoRecipeInfo(recipe)"
+            @linkClick="gotoRecipeInfo(recipe)" />
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <style scoped>

@@ -1,24 +1,72 @@
 <script setup>
 import { defineProps, ref } from 'vue';
+import { StarIcon } from '@heroicons/vue/20/solid';
+import { useAuth0 } from "@auth0/auth0-vue";
 
-const props = defineProps(['title', 'image', 'tags', 'diets', 'cuisines'])
+const { user, isAuthenticated } = useAuth0();
+
+const props = defineProps(['title', 'image', 'tags', 'diets', 'cuisines', 'userCollections', 'recipeId'])
+const emits = defineEmits(["linkClick", "cardClick"])
+
+const recipeId = ref(props.recipeId)
 const title = ref(props.title)
 const image = ref(props.image)
 const diets = ref(props.diets)
 const cuisines = ref(props.cuisines)
+const userCollections = ref(props.userCollections)
+const checkedBoxes = ref([])
 
-onMounted(() => {
+onMounted(async () => {
   if (image.value === undefined) {
     image.value = '/chef.jpg'
   }
+
+  if (user.value) {
+    try {
+      if (user.value.sub) {
+        // Populate the checkbox
+        for (const collection of userCollections.value) {
+          if (collection.recipes.includes(recipeId.value)) {
+            checkedBoxes.value.push(collection.collectionName)
+          }
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 })
+
+const addToCollection = async (collectionName) => {
+  if (user.value) {
+    const userId = user.value.sub
+    const recipeId = recipe.value.id
+
+
+    let res = await addRecipeIdToCollection(userId, collectionName, recipeId)
+    if (res.statusCode.value === 200) {
+      toast.success("Added to collection")
+    } else {
+      toast.error("Failed to add to collection")
+    }
+  }
+}
+
+const checkEvent = async (event) => {
+  const collectionName = event.target.id
+  if (event.target.checked) {
+    await addToCollection(collectionName)
+  } else {
+    await removeFromCollection(collectionName)
+  }
+}
 
 </script>
 
 <template>
   <div>
-    <div class="avatar cursor-pointer">
-      <div class="w-80 md:w-60 lg:w-40 rounded-lg relative">
+    <div @click="$emit('cardClick')" class="avatar cursor-pointer">
+      <div class="w-80 md:w-60 lg:w-56 rounded-lg relative">
         <div class="absolute inset-0 bg-cover bg-center z-0">
           <img class="rounded" :src="image" />
         </div>
@@ -34,8 +82,38 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="flex justify-center text-xl md:text-lg lg:text-md">
-      <TextLink>{{ title }}</TextLink>
+    <div class="flex text-xl mt-1 md:text-md lg:text-sm">
+      <TextLink @click="$emit('linkClick')" class="text-left">{{ title }}</TextLink>
+      <label for="collectionsModal" class="ml-auto btn btn-primary btn-circle btn-sm self-top">
+        <StarIcon class="h-4 w-4" />
+      </label>
+    </div>
+
+  </div>
+
+  <input type="checkbox" id="collectionsModal" class="modal-toggle" />
+  <div class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Save To Collections</h3>
+      <div v-if="isAuthenticated">
+        <div v-if="userCollections.length === 0">
+          <p class="mt-3">You have no collections yet</p>
+        </div>
+        <!-- checkbox -->
+        <div v-else v-for="collection in userCollections">
+          <div class="flex flex-row items-center gap-2">
+            <input @change="checkEvent" type="checkbox" v-model="checkedBoxes" :value="collection.collectionName"
+              :id="collection.collectionName" />
+            <label :for="collection.collectionName">{{ collection.collectionName }}</label>
+          </div>
+        </div>
+      </div>
+      <div v-else>
+        <p>Failed to get collections</p>
+      </div>
+      <div class="modal-action">
+        <label for="collectionsModal" class="btn">Yay!</label>
+      </div>
     </div>
   </div>
 </template>
