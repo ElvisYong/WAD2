@@ -64,7 +64,7 @@ watch(vicinity, async () => {
 </script>
 
 <template>
-  <div class="mt-10 container flex flex-col mx-32">
+  <div class="mt-10 container flex flex-col mx-32" v-motion-fade>
     <h1 class="text-2xl font-bold">Missing Ingredients? Look no further!</h1>
 
     <div>
