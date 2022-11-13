@@ -66,7 +66,7 @@ let filteredIngredients = computed(() => {
             class="z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" placeholder="Simply key in your ingredients here">
             <div v-if="ingredients.length === 0 && searchTerm !== ''"
               class="relative cursor-default select-none py-2 px-4 text-gray-700">
-              Nothing found.
+              Loading...
             </div>
 
             <ComboboxOption v-for="ingredient in filteredIngredients" as="template" :key="ingredient.id"
