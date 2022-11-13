@@ -6,6 +6,7 @@ import auth from './auth'
 import router from './router'
 import Toast from "vue-toastification";
 import VueGoogleMaps from '@fawmi/vue-google-maps'
+import { MotionPlugin } from '@vueuse/motion'
 
 
 // Toast css
@@ -18,6 +19,7 @@ app.use(auth)
 app.use(router)
 app.use(head)
 app.use(Toast)
+app.use(MotionPlugin)
 app.use(VueGoogleMaps, {
   load: {
       key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,

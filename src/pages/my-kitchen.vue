@@ -62,8 +62,8 @@ const findRecipesByIngredients = async () => {
           </div>
         </div>
         <div class="mt-6">
-          <a @click="findRecipesByIngredients"
-            class="text-[#FDED54] font-bold no-underline hover:underline">Click for the magic to
+          <a @click="findRecipesByIngredients" class="text-[#FDED54] font-bold no-underline hover:underline">Click for
+            the magic to
             happen</a><span class="text-[#FDED54] font-bold mr-3"> ></span>
         </div>
 
@@ -73,7 +73,7 @@ const findRecipesByIngredients = async () => {
 
 
   <div v-if="recipes && recipes.length > 0">
-    <div class="hero min-h-screen bg-light">
+    <div class="hero min-h-screen bg-light" v-motion-fade>
       <div class="hero-content text-center">
         <div class="mx-auto" id="SRecipes">
           <div v-if="recipes && recipes.length > 0" class="mt-6">
