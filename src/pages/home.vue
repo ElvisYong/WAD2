@@ -72,7 +72,8 @@ const loadMoreData = async () => {
       </div>
     </div>
   </div>
-  <div class="hidden lg:block">
+
+  <div class="hidden lg:block" v-motion-fade-visible>
     <div class="hero min-h-screen bg-[url('/otherfood.png')]" id="search">
       <div class="hero-content text-center content-center">
         <div class="max-w-md">
@@ -86,7 +87,7 @@ const loadMoreData = async () => {
     </div>
   </div>
 
-  <div class="hero min-h-screen bg-light">
+  <div class="hero min-h-screen bg-light" v-motion-fade-visible>
     <div class="hero-content text-center">
       <div class="mx-auto">
         <div id="recipes">
