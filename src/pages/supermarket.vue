@@ -3,6 +3,10 @@ import { onMounted } from 'vue'
 import { useToast } from "vue-toastification";
 import { nearbySearch } from '../apis/gmaps'
 
+useHead({
+  title: "Supermarket",
+});
+
 const toast = useToast();
 
 const center = ref({ lat: 1.3521, lng: 103.8198 })
