@@ -13,7 +13,7 @@ const center = ref({ lat: 1.3521, lng: 103.8198 })
 const currentPos = ref({ lat: 1.3521, lng: 103.8198 })
 
 const markers = ref([])
-const keyword = ref("")
+const keyword = ref("Supermarket")
 const vicinity = ref(100)
 
 const fetchNearbySuperMarket = async () => {
