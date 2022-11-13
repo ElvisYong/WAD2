@@ -32,7 +32,7 @@ useInfiniteScroll(containerProps.ref, () => {
 </script>
 
 <template>
-  <div class="mt-6 no-scrollbar" ref="el" v-bind="containerProps" :style="{ height: height - 200 + 'px' }">
+  <div class="mt-6 no-scrollbar" v-bind="containerProps" :style="{ height: height - 10 + 'px' }">
     <div class="md:mx-3">
       <!-- <h1 class="mb-6 font-bold text-2xl text-center lg:text-center">Recipes</h1> -->
       <slot></slot>

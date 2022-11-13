@@ -66,7 +66,7 @@ const gotoRecipeInfo = (recipe) => {
             <MagnifyingGlassIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
           </ComboboxButton>
           <ComboboxInput class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-            :displayValue="(recipe) => recipe && recipe.value" @change="searchTerm = $event.target.value" />
+            :displayValue="(recipe) => recipe && recipe.value" @change="searchTerm = $event.target.value" placeholder="Butter Chicken"/>
         </div>
 
         <TransitionRoot leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0"
