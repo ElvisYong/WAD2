@@ -142,7 +142,7 @@ const checkEvent = async (event) => {
         </div>
       </div>
       <div v-else>
-        <p>You're not logged in, </p>
+        <p>You're not logged in</p>
       </div>
       <div class="modal-action">
         <label for="collectionsModal" class="btn">Close</label>
